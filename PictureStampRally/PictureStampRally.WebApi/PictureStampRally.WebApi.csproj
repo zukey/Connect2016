@@ -88,6 +88,8 @@
       <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.4.0.0\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -109,8 +111,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\DB\" />
-    <Folder Include="Models\ImageApproximate\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="WebActivatorEx">
@@ -131,8 +131,25 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Models\DB\Connect2016TZ.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Connect2016TZ.Context.cs</LastGenOutput>
+      <DependentUpon>Connect2016TZ.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\DB\Connect2016TZ.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Connect2016TZ.edmx</DependentUpon>
+      <LastGenOutput>Connect2016TZ.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="packages.config" />
+    <EntityDeploy Include="Models\DB\Connect2016TZ.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Connect2016TZ.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DB\Connect2016TZ.edmx.diagram">
+      <DependentUpon>Connect2016TZ.edmx</DependentUpon>
+    </Content>
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +160,34 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DB\Connect2016TZ.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Connect2016TZ.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\Connect2016TZ.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Connect2016TZ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\Connect2016TZ.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Connect2016TZ.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\Event.cs">
+      <DependentUpon>Connect2016TZ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\HintProvider.cs">
+      <DependentUpon>Connect2016TZ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\Score.cs">
+      <DependentUpon>Connect2016TZ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\ThemeImage.cs">
+      <DependentUpon>Connect2016TZ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ImageApproximate\ScoreCalculator.cs" />
     <Compile Include="Models\UploadFileOperationFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -155,7 +200,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
