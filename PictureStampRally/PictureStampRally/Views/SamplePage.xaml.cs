@@ -13,6 +13,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+using PictureStampRally.ViewModels;
+
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234238 を参照してください
 
 namespace PictureStampRally.Views
@@ -22,9 +24,17 @@ namespace PictureStampRally.Views
     /// </summary>
     public sealed partial class SamplePage : Page
     {
+        SamplePageViewModel _vm = new SamplePageViewModel();
+
         public SamplePage()
         {
             this.InitializeComponent();
+            this.DataContext = _vm;
+        }
+
+        private async void button_Click(object sender, RoutedEventArgs e)
+        {
+            await _vm.UpdateValue();
         }
     }
 }

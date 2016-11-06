@@ -16,6 +16,7 @@
         <EntityType Name="HintChain">
           <Key>
             <PropertyRef Name="ThemeImageId" />
+            <PropertyRef Name="HintProviderId" />
           </Key>
           <Property Name="ThemeImageId" Type="int" Nullable="false" />
           <Property Name="HintProviderId" Type="int" Nullable="false" />
@@ -42,8 +43,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EventId" Type="int" Nullable="false" />
           <Property Name="Image" Type="varbinary(max)" Nullable="false" />
-          <Property Name="Prefecture" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HintAddr" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_HintChain_HintProvider">
           <End Role="HintProvider" Type="Self.HintProvider" Multiplicity="1">
@@ -63,7 +63,7 @@
           <End Role="ThemeImage" Type="Self.ThemeImage" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="HintChain" Type="Self.HintChain" Multiplicity="0..1" />
+          <End Role="HintChain" Type="Self.HintChain" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ThemeImage">
               <PropertyRef Name="Id" />
@@ -131,21 +131,21 @@
         <EntityContainer Name="Connect2016TZEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Event" EntityType="Connect2016TZModel.Event" />
           <EntitySet Name="HintProvider" EntityType="Connect2016TZModel.HintProvider" />
+          <EntitySet Name="Score" EntityType="Connect2016TZModel.Score" />
           <EntitySet Name="ThemeImage" EntityType="Connect2016TZModel.ThemeImage" />
           <AssociationSet Name="FK_ThemeImage_Event" Association="Connect2016TZModel.FK_ThemeImage_Event">
             <End Role="Event" EntitySet="Event" />
             <End Role="ThemeImage" EntitySet="ThemeImage" />
           </AssociationSet>
-          <AssociationSet Name="HintChain" Association="Connect2016TZModel.HintChain">
-            <End Role="HintProvider" EntitySet="HintProvider" />
-            <End Role="ThemeImage" EntitySet="ThemeImage" />
-          </AssociationSet>
-          <EntitySet Name="Score" EntityType="Connect2016TZModel.Score" />
           <AssociationSet Name="FK_Score_ThemeImage" Association="Connect2016TZModel.FK_Score_ThemeImage">
             <End Role="ThemeImage" EntitySet="ThemeImage" />
             <End Role="Score" EntitySet="Score" />
           </AssociationSet>
-        </EntityContainer>
+          <AssociationSet Name="HintChain" Association="Connect2016TZModel.HintChain">
+            <End Role="HintProvider" EntitySet="HintProvider" />
+            <End Role="ThemeImage" EntitySet="ThemeImage" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Event">
           <Key>
             <PropertyRef Name="Id" />
@@ -164,6 +164,14 @@
           <Property Name="Category" Type="Byte" Nullable="false" />
           <NavigationProperty Name="ThemeImage" Relationship="Connect2016TZModel.HintChain" FromRole="HintProvider" ToRole="ThemeImage" />
         </EntityType>
+        <EntityType Name="Score">
+          <Key>
+            <PropertyRef Name="ThemeImageId" />
+          </Key>
+          <Property Name="ThemeImageId" Type="Int32" Nullable="false" />
+          <Property Name="ScoreValue" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ThemeImage" Relationship="Connect2016TZModel.FK_Score_ThemeImage" FromRole="Score" ToRole="ThemeImage" />
+        </EntityType>
         <EntityType Name="ThemeImage">
           <Key>
             <PropertyRef Name="Id" />
@@ -171,11 +179,10 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EventId" Type="Int32" Nullable="false" />
           <Property Name="Image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="Prefecture" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HintAddr" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Event" Relationship="Connect2016TZModel.FK_ThemeImage_Event" FromRole="ThemeImage" ToRole="Event" />
-          <NavigationProperty Name="HintProvider" Relationship="Connect2016TZModel.HintChain" FromRole="ThemeImage" ToRole="HintProvider" />
           <NavigationProperty Name="Score" Relationship="Connect2016TZModel.FK_Score_ThemeImage" FromRole="ThemeImage" ToRole="Score" />
+          <NavigationProperty Name="HintProvider" Relationship="Connect2016TZModel.HintChain" FromRole="ThemeImage" ToRole="HintProvider" />
         </EntityType>
         <Association Name="FK_ThemeImage_Event">
           <End Type="Connect2016TZModel.Event" Role="Event" Multiplicity="1">
@@ -191,18 +198,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="HintChain">
-          <End Type="Connect2016TZModel.HintProvider" Role="HintProvider" Multiplicity="0..1" />
-          <End Type="Connect2016TZModel.ThemeImage" Role="ThemeImage" Multiplicity="*" />
-        </Association>
-        <EntityType Name="Score">
-          <Key>
-            <PropertyRef Name="ThemeImageId" />
-          </Key>
-          <Property Name="ThemeImageId" Type="Int32" Nullable="false" />
-          <Property Name="ScoreValue" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ThemeImage" Relationship="Connect2016TZModel.FK_Score_ThemeImage" FromRole="Score" ToRole="ThemeImage" />
-        </EntityType>
         <Association Name="FK_Score_ThemeImage">
           <End Type="Connect2016TZModel.ThemeImage" Role="ThemeImage" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -217,7 +212,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="HintChain">
+          <End Type="Connect2016TZModel.HintProvider" Role="HintProvider" Multiplicity="*" />
+          <End Type="Connect2016TZModel.ThemeImage" Role="ThemeImage" Multiplicity="*" />
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -241,11 +240,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Score">
+            <EntityTypeMapping TypeName="Connect2016TZModel.Score">
+              <MappingFragment StoreEntitySet="Score">
+                <ScalarProperty Name="ScoreValue" ColumnName="ScoreValue" />
+                <ScalarProperty Name="ThemeImageId" ColumnName="ThemeImageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ThemeImage">
             <EntityTypeMapping TypeName="Connect2016TZModel.ThemeImage">
               <MappingFragment StoreEntitySet="ThemeImage">
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Prefecture" ColumnName="Prefecture" />
+                <ScalarProperty Name="HintAddr" ColumnName="HintAddr" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="EventId" ColumnName="EventId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -259,17 +265,8 @@
             <EndProperty Name="HintProvider">
               <ScalarProperty Name="Id" ColumnName="HintProviderId" />
             </EndProperty>
-            <Condition ColumnName="HintProviderId" IsNull="false" />
           </AssociationSetMapping>
-          <EntitySetMapping Name="Score">
-            <EntityTypeMapping TypeName="Connect2016TZModel.Score">
-              <MappingFragment StoreEntitySet="Score">
-                <ScalarProperty Name="ScoreValue" ColumnName="ScoreValue" />
-                <ScalarProperty Name="ThemeImageId" ColumnName="ThemeImageId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

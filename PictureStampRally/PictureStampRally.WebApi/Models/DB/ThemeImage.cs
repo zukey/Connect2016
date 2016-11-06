@@ -14,14 +14,20 @@ namespace PictureStampRally.WebApi.Models.DB
     
     public partial class ThemeImage
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ThemeImage()
+        {
+            this.HintProvider = new HashSet<HintProvider>();
+        }
+    
         public int Id { get; set; }
         public int EventId { get; set; }
         public byte[] Image { get; set; }
-        public string Prefecture { get; set; }
-        public string City { get; set; }
+        public string HintAddr { get; set; }
     
         public virtual Event Event { get; set; }
-        public virtual HintProvider HintProvider { get; set; }
         public virtual Score Score { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HintProvider> HintProvider { get; set; }
     }
 }

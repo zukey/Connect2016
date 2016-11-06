@@ -7,12 +7,12 @@
       <Diagram DiagramId="67c7d90423c84b5db5e7bac1e3000e14" Name="Diagram1">
         <EntityTypeShape EntityType="Connect2016TZModel.Event" Width="1.5" PointX="3.375" PointY="5.375" />
         <EntityTypeShape EntityType="Connect2016TZModel.HintProvider" Width="1.5" PointX="3.375" PointY="1.375" />
-        <EntityTypeShape EntityType="Connect2016TZModel.ThemeImage" Width="1.5" PointX="5.625" PointY="1" />
-        <AssociationConnector Association="Connect2016TZModel.FK_ThemeImage_Event" />
-        <AssociationConnector Association="Connect2016TZModel.HintChain" />
         <EntityTypeShape EntityType="Connect2016TZModel.Score" Width="1.5" PointX="7.875" PointY="1.5" />
+        <EntityTypeShape EntityType="Connect2016TZModel.ThemeImage" Width="1.5" PointX="5.625" PointY="3.125" />
+        <AssociationConnector Association="Connect2016TZModel.FK_ThemeImage_Event" />
         <AssociationConnector Association="Connect2016TZModel.FK_Score_ThemeImage" />
-      </Diagram>
+        <AssociationConnector Association="Connect2016TZModel.HintChain" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

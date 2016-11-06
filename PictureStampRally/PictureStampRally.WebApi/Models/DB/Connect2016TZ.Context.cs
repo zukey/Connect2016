@@ -27,7 +27,7 @@ namespace PictureStampRally.WebApi.Models.DB
     
         public virtual DbSet<Event> Event { get; set; }
         public virtual DbSet<HintProvider> HintProvider { get; set; }
-        public virtual DbSet<ThemeImage> ThemeImage { get; set; }
         public virtual DbSet<Score> Score { get; set; }
+        public virtual DbSet<ThemeImage> ThemeImage { get; set; }
     }
 }

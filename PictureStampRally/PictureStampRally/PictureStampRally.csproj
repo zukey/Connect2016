@@ -98,7 +98,31 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PictureStampRallyWebApi\Events.cs" />
+    <Compile Include="PictureStampRallyWebApi\EventsExtensions.cs" />
+    <Compile Include="PictureStampRallyWebApi\FileUploadSample.cs" />
+    <Compile Include="PictureStampRallyWebApi\FileUploadSampleExtensions.cs" />
+    <Compile Include="PictureStampRallyWebApi\IEvents.cs" />
+    <Compile Include="PictureStampRallyWebApi\IFileUploadSample.cs" />
+    <Compile Include="PictureStampRallyWebApi\IPictureStampRallyWebApi.cs" />
+    <Compile Include="PictureStampRallyWebApi\IScore.cs" />
+    <Compile Include="PictureStampRallyWebApi\IThemeImages.cs" />
+    <Compile Include="PictureStampRallyWebApi\Models\EventInfo.cs" />
+    <Compile Include="PictureStampRallyWebApi\Models\EventInfoCollection.cs" />
+    <Compile Include="PictureStampRallyWebApi\Models\ScoreCheckResult.cs" />
+    <Compile Include="PictureStampRallyWebApi\Models\StringCollection.cs" />
+    <Compile Include="PictureStampRallyWebApi\Models\ThemeItem.cs" />
+    <Compile Include="PictureStampRallyWebApi\Models\ThemeItemCollection.cs" />
+    <Compile Include="PictureStampRallyWebApi\PictureStampRallyWebApi.cs" />
+    <Compile Include="PictureStampRallyWebApi\PictureStampRallyWebApiExtensions.cs" />
+    <Compile Include="PictureStampRallyWebApi\Score.cs" />
+    <Compile Include="PictureStampRallyWebApi\ScoreExtensions.cs" />
+    <Compile Include="PictureStampRallyWebApi\StringCollection.cs" />
+    <Compile Include="PictureStampRallyWebApi\ThemeImages.cs" />
+    <Compile Include="PictureStampRallyWebApi\ThemeImagesExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\NotificationBase.cs" />
+    <Compile Include="ViewModels\SamplePageViewModel.cs" />
     <Compile Include="Views\SamplePage.xaml.cs">
       <DependentUpon>SamplePage.xaml</DependentUpon>
     </Compile>

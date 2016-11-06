@@ -15,6 +15,9 @@ using Swashbuckle.Swagger.Annotations;
 
 namespace PictureStampRally.WebApi.Controllers
 {
+    /// <summary>
+    /// サンプルです。後で消す
+    /// </summary>
     public class FileUploadSampleController : ApiController
     {
         [HttpPost]

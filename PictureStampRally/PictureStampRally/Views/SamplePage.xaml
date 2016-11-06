@@ -1,14 +1,16 @@
 ﻿<Page
-    x:Class="PictureStampRally.Views.SamplePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:PictureStampRally.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    xmlns:ViewModels="using:PictureStampRally.ViewModels"
+    x:Class="PictureStampRally.Views.SamplePage"
+    mc:Ignorable="d" d:DataContext="{d:DesignInstance ViewModels:SamplePageViewModel, IsDesignTimeCreatable=True}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="107,67,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="107,67,0,0" TextWrapping="Wrap" Text="{Binding Val}" VerticalAlignment="Top"/>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="169,254,0,0" VerticalAlignment="Top" Click="button_Click"/>
 
     </Grid>
 </Page>
