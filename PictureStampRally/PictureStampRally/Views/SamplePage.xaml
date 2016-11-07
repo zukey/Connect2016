@@ -8,7 +8,7 @@
     x:Class="PictureStampRally.Views.SamplePage"
     mc:Ignorable="d" d:DataContext="{d:DesignInstance ViewModels:SamplePageViewModel, IsDesignTimeCreatable=True}">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,0,-190,-127">
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="107,67,0,0" TextWrapping="Wrap" Text="{Binding Val}" VerticalAlignment="Top"/>
         <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="169,254,0,0" VerticalAlignment="Top" Click="button_Click"/>
 
