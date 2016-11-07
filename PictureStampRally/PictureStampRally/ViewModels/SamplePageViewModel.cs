@@ -17,6 +17,11 @@ namespace PictureStampRally.ViewModels
             set { SetProperty(ref _val, value); }
         }
 
+        /// <summary>
+        /// サンプル
+        /// </summary>
+        public string Hoge { get; set; }
+
         public async Task UpdateValue()
         {
             using (var client = new PictureStampRallyWebApi())
