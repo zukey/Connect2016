@@ -16,7 +16,6 @@ using Windows.UI.Xaml.Navigation;
 using Windows.Media.Capture;
 using Windows.Storage;
 
-using PictureStampRally.ViewModels;
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234238 を参照してください
 
@@ -25,27 +24,19 @@ namespace PictureStampRally.Views
     /// <summary>
     /// それ自体で使用できる空白ページまたはフレーム内に移動できる空白ページ。
     /// </summary>
-    public sealed partial class SamplePage : Page
+    public sealed partial class ViewScore : Page
     {
-        SamplePageViewModel _vm = new SamplePageViewModel();
-
-        public SamplePage()
+        public ViewScore()
         {
             this.InitializeComponent();
-            this.DataContext = _vm;
         }
 
-        private async void button_Click(object sender, RoutedEventArgs e)
-        {
-            await _vm.UpdateValue();
-        }
-
-        private void buttonback_Click(object sender, RoutedEventArgs e)
+        private void buttonhome_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(MainPage));
         }
 
-        private async void buttoncamera_Click(object sender, RoutedEventArgs e)
+        private async void buttonRePhotograph_Click(object sender, RoutedEventArgs e)
         {
             CameraCaptureUI captureUI = new CameraCaptureUI();
             captureUI.PhotoSettings.Format = CameraCaptureUIPhotoFormat.Jpeg;

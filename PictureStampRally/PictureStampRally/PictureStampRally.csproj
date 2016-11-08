@@ -131,6 +131,9 @@
     <Compile Include="Views\SamplePage.xaml.cs">
       <DependentUpon>SamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ViewScorePage.xaml.cs">
+      <DependentUpon>ViewScorePage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -162,6 +165,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewScorePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
