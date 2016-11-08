@@ -10,6 +10,7 @@
 namespace PictureStampRally.WebApi.Models.DB
 {
     using System;
+    using System.Data.SqlClient;
     using System.Collections.Generic;
     
     public partial class ThemeImage
@@ -29,5 +30,24 @@ namespace PictureStampRally.WebApi.Models.DB
         public virtual Score Score { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HintProvider> HintProvider { get; set; }
+
+        public static SqlDataReader getThemImage()
+        {
+            SqlConnection conn = new SqlConnection();
+            SqlCommand command = new SqlCommand();
+
+            conn.ConnectionString = @"Data Source = connect2016-fcs-team-z.database.windows.net;"
+                                        + "Initial Catalog = fcs;"
+                                        + "Integrated Security=False;"
+                                        + "User ID = fcs;"
+                                        + "Password = Pass1234";
+            conn.Open();
+
+            command.Connection = conn;
+            command.CommandText = "SELECT * FROM dbo.ThemeImage";
+
+            SqlDataReader reader = command.ExecuteReader();
+            return reader;
+        }
     }
 }

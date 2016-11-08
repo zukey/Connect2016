@@ -10,6 +10,7 @@
 namespace PictureStampRally.WebApi.Models.DB
 {
     using System;
+    using System.Data.SqlClient;
     using System.Collections.Generic;
     
     public partial class Score
@@ -18,5 +19,24 @@ namespace PictureStampRally.WebApi.Models.DB
         public int ScoreValue { get; set; }
     
         public virtual ThemeImage ThemeImage { get; set; }
+
+        public static SqlDataReader getScore()
+        {
+            SqlConnection conn = new SqlConnection();
+            SqlCommand command = new SqlCommand();
+
+            conn.ConnectionString = @"Data Source = connect2016-fcs-team-z.database.windows.net;"
+                                        + "Initial Catalog = fcs;"
+                                        + "Integrated Security=False;"
+                                        + "User ID = fcs;"
+                                        + "Password = Pass1234";
+            conn.Open();
+
+            command.Connection = conn;
+            command.CommandText = "SELECT * FROM dbo.Score";
+
+            SqlDataReader reader = command.ExecuteReader();
+            return reader;
+        }
     }
 }

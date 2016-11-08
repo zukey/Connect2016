@@ -135,7 +135,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Global.asax" />
+    <Content Include="Models\Global.asax" />
     <Content Include="Models\DB\Connect2016TZ.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Connect2016TZ.Context.cs</LastGenOutput>
@@ -158,6 +158,7 @@
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ClassDiagram1.cd" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -171,7 +172,7 @@
     <Compile Include="Controllers\ScoreController.cs" />
     <Compile Include="Controllers\ThemeImagesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="Global.asax.cs">
+    <Compile Include="Models\Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\Connect2016TZ.Context.cs">
@@ -202,7 +203,9 @@
       <DependentUpon>Connect2016TZ.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EventInfo.cs" />
-    <Compile Include="Models\ImageApproximate\ScoreCalculator.cs" />
+    <Compile Include="Models\ImageApproximate\ScoreCalculator.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Models\ScoreCheckResult.cs" />
     <Compile Include="Models\ScoreOperationFilter.cs" />
     <Compile Include="Models\ThemeItem.cs" />
