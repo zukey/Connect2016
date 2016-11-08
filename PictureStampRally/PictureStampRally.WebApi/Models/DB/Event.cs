@@ -10,7 +10,6 @@
 namespace PictureStampRally.WebApi.Models.DB
 {
     using System;
-    using System.Data.SqlClient;
     using System.Collections.Generic;
     
     public partial class Event
@@ -27,24 +26,5 @@ namespace PictureStampRally.WebApi.Models.DB
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ThemeImage> ThemeImage { get; set; }
-
-        public static SqlDataReader getEvent()
-        {
-            SqlConnection conn = new SqlConnection();
-            SqlCommand command = new SqlCommand();
-
-            conn.ConnectionString = @"Data Source = connect2016-fcs-team-z.database.windows.net;"
-                                        + "Initial Catalog = fcs;"
-                                        + "Integrated Security=False;"
-                                        + "User ID = fcs;"
-                                        + "Password = Pass1234";
-            conn.Open();
-
-            command.Connection = conn;
-            command.CommandText = "SELECT * FROM dbo.Event";
-
-            SqlDataReader reader = command.ExecuteReader();
-            return reader; 
-        } 
     }
 }
