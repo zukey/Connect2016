@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 using PictureStampRally.Models;
-using PictureStampRally.WebApiClient;
 
 namespace PictureStampRally.ViewModels
 {

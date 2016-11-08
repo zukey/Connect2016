@@ -7,15 +7,14 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Rest;
-using PictureStampRally.WebApiClient;
+using PictureStampRally;
 
-namespace PictureStampRally.WebApiClient
+namespace PictureStampRally
 {
     public static partial class PictureStampRallyWebApiExtensions
     {
         /// <param name='operations'>
-        /// Reference to the
-        /// PictureStampRally.WebApiClient.IPictureStampRallyWebApi.
+        /// Reference to the PictureStampRally.IPictureStampRallyWebApi.
         /// </param>
         /// <param name='value'>
         /// Required.
@@ -30,8 +29,7 @@ namespace PictureStampRally.WebApiClient
         }
         
         /// <param name='operations'>
-        /// Reference to the
-        /// PictureStampRally.WebApiClient.IPictureStampRallyWebApi.
+        /// Reference to the PictureStampRally.IPictureStampRallyWebApi.
         /// </param>
         /// <param name='value'>
         /// Required.
@@ -46,8 +44,7 @@ namespace PictureStampRally.WebApiClient
         }
         
         /// <param name='operations'>
-        /// Reference to the
-        /// PictureStampRally.WebApiClient.IPictureStampRallyWebApi.
+        /// Reference to the PictureStampRally.IPictureStampRallyWebApi.
         /// </param>
         /// <param name='id'>
         /// Required.
@@ -62,8 +59,7 @@ namespace PictureStampRally.WebApiClient
         }
         
         /// <param name='operations'>
-        /// Reference to the
-        /// PictureStampRally.WebApiClient.IPictureStampRallyWebApi.
+        /// Reference to the PictureStampRally.IPictureStampRallyWebApi.
         /// </param>
         /// <param name='id'>
         /// Required.
@@ -78,8 +74,7 @@ namespace PictureStampRally.WebApiClient
         }
         
         /// <param name='operations'>
-        /// Reference to the
-        /// PictureStampRally.WebApiClient.IPictureStampRallyWebApi.
+        /// Reference to the PictureStampRally.IPictureStampRallyWebApi.
         /// </param>
         public static IList<string> GetAll(this IPictureStampRallyWebApi operations)
         {
@@ -91,8 +86,7 @@ namespace PictureStampRally.WebApiClient
         }
         
         /// <param name='operations'>
-        /// Reference to the
-        /// PictureStampRally.WebApiClient.IPictureStampRallyWebApi.
+        /// Reference to the PictureStampRally.IPictureStampRallyWebApi.
         /// </param>
         /// <param name='cancellationToken'>
         /// Cancellation token.
@@ -104,8 +98,7 @@ namespace PictureStampRally.WebApiClient
         }
         
         /// <param name='operations'>
-        /// Reference to the
-        /// PictureStampRally.WebApiClient.IPictureStampRallyWebApi.
+        /// Reference to the PictureStampRally.IPictureStampRallyWebApi.
         /// </param>
         /// <param name='id'>
         /// Required.
@@ -120,8 +113,7 @@ namespace PictureStampRally.WebApiClient
         }
         
         /// <param name='operations'>
-        /// Reference to the
-        /// PictureStampRally.WebApiClient.IPictureStampRallyWebApi.
+        /// Reference to the PictureStampRally.IPictureStampRallyWebApi.
         /// </param>
         /// <param name='id'>
         /// Required.
@@ -136,8 +128,7 @@ namespace PictureStampRally.WebApiClient
         }
         
         /// <param name='operations'>
-        /// Reference to the
-        /// PictureStampRally.WebApiClient.IPictureStampRallyWebApi.
+        /// Reference to the PictureStampRally.IPictureStampRallyWebApi.
         /// </param>
         /// <param name='id'>
         /// Required.
@@ -155,8 +146,7 @@ namespace PictureStampRally.WebApiClient
         }
         
         /// <param name='operations'>
-        /// Reference to the
-        /// PictureStampRally.WebApiClient.IPictureStampRallyWebApi.
+        /// Reference to the PictureStampRally.IPictureStampRallyWebApi.
         /// </param>
         /// <param name='id'>
         /// Required.

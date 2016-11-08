@@ -5,7 +5,7 @@ using System;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 
-namespace PictureStampRally.WebApiClient.Models
+namespace PictureStampRally.Models
 {
     public partial class EventInfo
     {

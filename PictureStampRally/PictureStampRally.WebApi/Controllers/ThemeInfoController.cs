@@ -21,20 +21,28 @@ namespace PictureStampRally.WebApi.Controllers
         {
             _Logger.Info("ThemeInfo/Get");
 
-            using (var db = new Connect2016TZEntities())
+            try
             {
-                var targets = db.ThemeImage.AsNoTracking().Where(x => x.EventId == eventId).Include(x => x.HintProvider).ToArray();
-
-                var ret = targets.Select(x => new ThemeInfo()
+                using (var db = new Connect2016TZEntities())
                 {
-                    Id = x.Id,
-                    HintAddress = x.HintAddr,
-                    ImageBase64String = Convert.ToBase64String(x.Image),
-                    Score = x.Score?.ScoreValue,
-                    Hints = x.HintProvider.Select(h => h.Name).ToArray()
-                });
+                    var targets = db.ThemeImage.AsNoTracking().Where(x => x.EventId == eventId).Include(x => x.HintProvider).ToArray();
 
-                return ret;
+                    var ret = targets.Select(x => new ThemeInfo()
+                    {
+                        Id = x.Id,
+                        HintAddress = x.HintAddr,
+                        ImageBase64String = Convert.ToBase64String(x.Image),
+                        Score = x.Score?.ScoreValue,
+                        Hints = x.HintProvider.Select(h => h.Name).ToArray()
+                    }).ToArray();
+
+                    return ret;
+                }
+            }
+            catch (Exception ex)
+            {
+                _Logger.Warn(ex, "例外");
+                throw new HttpResponseException(HttpStatusCode.InternalServerError);
             }
         }
     }

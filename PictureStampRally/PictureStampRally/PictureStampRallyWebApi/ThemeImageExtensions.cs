@@ -7,14 +7,14 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Rest;
-using PictureStampRally.WebApiClient;
+using PictureStampRally;
 
-namespace PictureStampRally.WebApiClient
+namespace PictureStampRally
 {
     public static partial class ThemeImageExtensions
     {
         /// <param name='operations'>
-        /// Reference to the PictureStampRally.WebApiClient.IThemeImage.
+        /// Reference to the PictureStampRally.IThemeImage.
         /// </param>
         /// <param name='file'>
         /// Required. アップロードするファイル
@@ -35,7 +35,7 @@ namespace PictureStampRally.WebApiClient
         }
         
         /// <param name='operations'>
-        /// Reference to the PictureStampRally.WebApiClient.IThemeImage.
+        /// Reference to the PictureStampRally.IThemeImage.
         /// </param>
         /// <param name='file'>
         /// Required. アップロードするファイル
@@ -56,7 +56,7 @@ namespace PictureStampRally.WebApiClient
         }
         
         /// <param name='operations'>
-        /// Reference to the PictureStampRally.WebApiClient.IThemeImage.
+        /// Reference to the PictureStampRally.IThemeImage.
         /// </param>
         /// <param name='file'>
         /// Required. アップロードするファイル
@@ -77,7 +77,7 @@ namespace PictureStampRally.WebApiClient
         }
         
         /// <param name='operations'>
-        /// Reference to the PictureStampRally.WebApiClient.IThemeImage.
+        /// Reference to the PictureStampRally.IThemeImage.
         /// </param>
         /// <param name='file'>
         /// Required. アップロードするファイル

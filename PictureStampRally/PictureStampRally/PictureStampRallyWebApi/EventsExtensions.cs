@@ -7,15 +7,15 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Rest;
-using PictureStampRally.WebApiClient;
-using PictureStampRally.WebApiClient.Models;
+using PictureStampRally;
+using PictureStampRally.Models;
 
-namespace PictureStampRally.WebApiClient
+namespace PictureStampRally
 {
     public static partial class EventsExtensions
     {
         /// <param name='operations'>
-        /// Reference to the PictureStampRally.WebApiClient.IEvents.
+        /// Reference to the PictureStampRally.IEvents.
         /// </param>
         public static IList<EventInfo> Get(this IEvents operations)
         {
@@ -27,14 +27,14 @@ namespace PictureStampRally.WebApiClient
         }
         
         /// <param name='operations'>
-        /// Reference to the PictureStampRally.WebApiClient.IEvents.
+        /// Reference to the PictureStampRally.IEvents.
         /// </param>
         /// <param name='cancellationToken'>
         /// Cancellation token.
         /// </param>
         public static async Task<IList<EventInfo>> GetAsync(this IEvents operations, CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Microsoft.Rest.HttpOperationResponse<System.Collections.Generic.IList<PictureStampRally.WebApiClient.Models.EventInfo>> result = await operations.GetWithOperationResponseAsync(cancellationToken).ConfigureAwait(false);
+            Microsoft.Rest.HttpOperationResponse<System.Collections.Generic.IList<PictureStampRally.Models.EventInfo>> result = await operations.GetWithOperationResponseAsync(cancellationToken).ConfigureAwait(false);
             return result.Body;
         }
     }

@@ -7,16 +7,15 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Rest;
-using PictureStampRally.WebApiClient;
-using PictureStampRally.WebApiClient.Models;
+using PictureStampRally;
+using PictureStampRally.Models;
 
-namespace PictureStampRally.WebApiClient
+namespace PictureStampRally
 {
     public static partial class ThemeInfoOperationsExtensions
     {
         /// <param name='operations'>
-        /// Reference to the
-        /// PictureStampRally.WebApiClient.IThemeInfoOperations.
+        /// Reference to the PictureStampRally.IThemeInfoOperations.
         /// </param>
         /// <param name='eventId'>
         /// Required.
@@ -31,8 +30,7 @@ namespace PictureStampRally.WebApiClient
         }
         
         /// <param name='operations'>
-        /// Reference to the
-        /// PictureStampRally.WebApiClient.IThemeInfoOperations.
+        /// Reference to the PictureStampRally.IThemeInfoOperations.
         /// </param>
         /// <param name='eventId'>
         /// Required.
@@ -42,7 +40,7 @@ namespace PictureStampRally.WebApiClient
         /// </param>
         public static async Task<IList<ThemeInfo>> GetAsync(this IThemeInfoOperations operations, int eventId, CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Microsoft.Rest.HttpOperationResponse<System.Collections.Generic.IList<PictureStampRally.WebApiClient.Models.ThemeInfo>> result = await operations.GetWithOperationResponseAsync(eventId, cancellationToken).ConfigureAwait(false);
+            Microsoft.Rest.HttpOperationResponse<System.Collections.Generic.IList<PictureStampRally.Models.ThemeInfo>> result = await operations.GetWithOperationResponseAsync(eventId, cancellationToken).ConfigureAwait(false);
             return result.Body;
         }
     }

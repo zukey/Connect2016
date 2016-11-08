@@ -7,9 +7,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Rest;
-using PictureStampRally.WebApiClient;
+using PictureStampRally;
 
-namespace PictureStampRally.WebApiClient
+namespace PictureStampRally
 {
     public partial interface IPictureStampRallyWebApi : IDisposable
     {

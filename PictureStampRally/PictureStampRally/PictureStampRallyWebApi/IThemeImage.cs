@@ -7,32 +7,37 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Rest;
-using PictureStampRally.WebApiClient.Models;
 
-namespace PictureStampRally.WebApiClient
+namespace PictureStampRally
 {
-    public partial interface IScore
+    public partial interface IThemeImage
     {
         /// <param name='file'>
         /// Required. アップロードするファイル
         /// </param>
-        /// <param name='themeImageId'>
-        /// Required. id
+        /// <param name='eventId'>
+        /// Required. イベントID
+        /// </param>
+        /// <param name='hintAddr'>
+        /// Required. だいたいの場所
         /// </param>
         /// <param name='cancellationToken'>
         /// Cancellation token.
         /// </param>
-        Task<HttpOperationResponse<ScoreCheckResult>> CheckWithOperationResponseAsync(Stream file, int themeImageId, CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<HttpOperationResponse<string>> PostWithOperationResponseAsync(Stream file, int eventId, string hintAddr, CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         
         /// <param name='file'>
         /// Required. アップロードするファイル
         /// </param>
         /// <param name='themeImageId'>
-        /// Required. id
+        /// Required. イメージID
+        /// </param>
+        /// <param name='hintAddr'>
+        /// Required. だいたいの場所
         /// </param>
         /// <param name='cancellationToken'>
         /// Cancellation token.
         /// </param>
-        Task<HttpOperationResponse<ScoreCheckResult>> RegistWithOperationResponseAsync(Stream file, int themeImageId, CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<HttpOperationResponse<string>> PutWithOperationResponseAsync(Stream file, int themeImageId, string hintAddr, CancellationToken cancellationToken = default(System.Threading.CancellationToken));
     }
 }

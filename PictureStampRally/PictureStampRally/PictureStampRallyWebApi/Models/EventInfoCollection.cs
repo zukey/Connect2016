@@ -5,23 +5,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
-using PictureStampRally.WebApiClient.Models;
+using PictureStampRally.Models;
 
-namespace PictureStampRally.WebApiClient.Models
+namespace PictureStampRally.Models
 {
-    public static partial class ThemeInfoCollection
+    public static partial class EventInfoCollection
     {
         /// <summary>
         /// Deserialize the object
         /// </summary>
-        public static IList<ThemeInfo> DeserializeJson(JToken inputObject)
+        public static IList<EventInfo> DeserializeJson(JToken inputObject)
         {
-            IList<ThemeInfo> deserializedObject = new List<ThemeInfo>();
+            IList<EventInfo> deserializedObject = new List<EventInfo>();
             foreach (JToken iListValue in ((JArray)inputObject))
             {
-                ThemeInfo themeInfo = new ThemeInfo();
-                themeInfo.DeserializeJson(iListValue);
-                deserializedObject.Add(themeInfo);
+                EventInfo eventInfo = new EventInfo();
+                eventInfo.DeserializeJson(iListValue);
+                deserializedObject.Add(eventInfo);
             }
             return deserializedObject;
         }

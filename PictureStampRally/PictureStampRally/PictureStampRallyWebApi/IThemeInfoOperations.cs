@@ -2,22 +2,23 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 using System;
-using System.IO;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Rest;
+using PictureStampRally.Models;
 
-namespace PictureStampRally.WebApiClient
+namespace PictureStampRally
 {
-    public partial interface IFileUploadSample
+    public partial interface IThemeInfoOperations
     {
-        /// <param name='buffer'>
-        /// Required. アップロードするファイル
+        /// <param name='eventId'>
+        /// Required.
         /// </param>
         /// <param name='cancellationToken'>
         /// Cancellation token.
         /// </param>
-        Task<HttpOperationResponse<string>> PostWithOperationResponseAsync(Stream buffer, CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<HttpOperationResponse<IList<ThemeInfo>>> GetWithOperationResponseAsync(int eventId, CancellationToken cancellationToken = default(System.Threading.CancellationToken));
     }
 }

@@ -10,10 +10,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Rest;
 using Newtonsoft.Json.Linq;
-using PictureStampRally.WebApiClient;
-using PictureStampRally.WebApiClient.Models;
+using PictureStampRally;
+using PictureStampRally.Models;
 
-namespace PictureStampRally.WebApiClient
+namespace PictureStampRally
 {
     internal partial class Events : IServiceOperations<PictureStampRallyWebApi>, IEvents
     {
@@ -31,8 +31,7 @@ namespace PictureStampRally.WebApiClient
         private PictureStampRallyWebApi _client;
         
         /// <summary>
-        /// Gets a reference to the
-        /// PictureStampRally.WebApiClient.PictureStampRallyWebApi.
+        /// Gets a reference to the PictureStampRally.PictureStampRallyWebApi.
         /// </summary>
         public PictureStampRallyWebApi Client
         {

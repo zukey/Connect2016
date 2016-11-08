@@ -12,10 +12,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Rest;
 using Newtonsoft.Json.Linq;
-using PictureStampRally.WebApiClient;
-using PictureStampRally.WebApiClient.Models;
+using PictureStampRally;
+using PictureStampRally.Models;
 
-namespace PictureStampRally.WebApiClient
+namespace PictureStampRally
 {
     public partial class PictureStampRallyWebApi : ServiceClient<PictureStampRallyWebApi>, IPictureStampRallyWebApi
     {
@@ -87,7 +87,7 @@ namespace PictureStampRally.WebApiClient
             this._score = new Score(this);
             this._themeImage = new ThemeImage(this);
             this._themeInfo = new ThemeInfoOperations(this);
-            this._baseUri = new Uri("http://localhost:60832");
+            this._baseUri = new Uri("https://picturestamprallywebapi.azurewebsites.net");
         }
         
         /// <summary>
@@ -105,7 +105,7 @@ namespace PictureStampRally.WebApiClient
             this._score = new Score(this);
             this._themeImage = new ThemeImage(this);
             this._themeInfo = new ThemeInfoOperations(this);
-            this._baseUri = new Uri("http://localhost:60832");
+            this._baseUri = new Uri("https://picturestamprallywebapi.azurewebsites.net");
         }
         
         /// <summary>
@@ -126,7 +126,7 @@ namespace PictureStampRally.WebApiClient
             this._score = new Score(this);
             this._themeImage = new ThemeImage(this);
             this._themeInfo = new ThemeInfoOperations(this);
-            this._baseUri = new Uri("http://localhost:60832");
+            this._baseUri = new Uri("https://picturestamprallywebapi.azurewebsites.net");
         }
         
         /// <summary>
