@@ -8,9 +8,15 @@
     x:Class="PictureStampRally.Views.SamplePage"
     mc:Ignorable="d" d:DataContext="{d:DesignInstance ViewModels:SamplePageViewModel, IsDesignTimeCreatable=True}">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,0,-190,-127">
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="107,67,0,0" TextWrapping="Wrap" Text="{Binding Val}" VerticalAlignment="Top"/>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="169,254,0,0" VerticalAlignment="Top" Click="button_Click"/>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="31,249,0,0" TextWrapping="Wrap" Text="{Binding Val}" VerticalAlignment="Top"/>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="31,274,0,0" VerticalAlignment="Top" Click="button_Click"/>
+        <Button x:Name="buttonback" Content="戻る" HorizontalAlignment="Left" Margin="10,17,0,0" VerticalAlignment="Top" Click="buttonback_Click"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="49" Margin="79,13,0,0" TextWrapping="Wrap" Text="アプリタイトル" VerticalAlignment="Top" Width="213" FontSize="36" TextAlignment="Center"/>
+        <Button x:Name="button1" Content="＜＜" HorizontalAlignment="Left" Margin="9,104,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="button2" Content="＞＞" HorizontalAlignment="Left" Margin="290,104,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="79,179,0,0" TextWrapping="Wrap" Text="ヒント：" VerticalAlignment="Top"/>
+        <Button x:Name="buttoncamera" Content="撮影！！" HorizontalAlignment="Left" Margin="236,393,0,0" VerticalAlignment="Top" Click="buttoncamera_Click"/>
 
     </Grid>
 </Page>
