@@ -6,6 +6,8 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Swashbuckle.Swagger.Annotations;
+using PictureStampRally.WebApi.Models.DB;
+using NLog;
 
 namespace PictureStampRally.WebApi.Controllers
 {
@@ -14,10 +16,22 @@ namespace PictureStampRally.WebApi.Controllers
     /// </summary>
     public class ValuesController : ApiController
     {
+        Logger _Logger = LogManager.GetCurrentClassLogger();
+
         // GET api/values
         [SwaggerOperation("GetAll")]
         public IEnumerable<string> Get()
         {
+            using (var db = new Connect2016TZEntities())
+            {
+                var items = db.Event.AsNoTracking().ToArray();
+                foreach (var item in items)
+                {
+                    _Logger.Info("Event Id[{0}] Name[{1}] BorderScore[{2}]"
+                        , item.Id, item.Name, item.BorderScore);
+                }
+            }
+
             return new string[] { "value1", "value2" };
         }
 
