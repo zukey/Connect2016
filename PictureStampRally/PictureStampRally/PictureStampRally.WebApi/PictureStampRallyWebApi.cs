@@ -12,9 +12,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Rest;
 using Newtonsoft.Json.Linq;
-using PictureStampRally;
+using PictureStampRally.WebApiClient;
+using PictureStampRally.WebApiClient.Models;
 
-namespace PictureStampRally
+namespace PictureStampRally.WebApiClient
 {
     public partial class PictureStampRallyWebApi : ServiceClient<PictureStampRallyWebApi>, IPictureStampRallyWebApi
     {
@@ -61,11 +62,18 @@ namespace PictureStampRally
             get { return this._score; }
         }
         
-        private IThemeImages _themeImages;
+        private IThemeImage _themeImage;
         
-        public virtual IThemeImages ThemeImages
+        public virtual IThemeImage ThemeImage
         {
-            get { return this._themeImages; }
+            get { return this._themeImage; }
+        }
+        
+        private IThemeInfoOperations _themeInfo;
+        
+        public virtual IThemeInfoOperations ThemeInfo
+        {
+            get { return this._themeInfo; }
         }
         
         /// <summary>
@@ -77,8 +85,9 @@ namespace PictureStampRally
             this._events = new Events(this);
             this._fileUploadSample = new FileUploadSample(this);
             this._score = new Score(this);
-            this._themeImages = new ThemeImages(this);
-            this._baseUri = new Uri("https://picturestamprallywebapi.azurewebsites.net");
+            this._themeImage = new ThemeImage(this);
+            this._themeInfo = new ThemeInfoOperations(this);
+            this._baseUri = new Uri("http://localhost:60832");
         }
         
         /// <summary>
@@ -94,8 +103,9 @@ namespace PictureStampRally
             this._events = new Events(this);
             this._fileUploadSample = new FileUploadSample(this);
             this._score = new Score(this);
-            this._themeImages = new ThemeImages(this);
-            this._baseUri = new Uri("https://picturestamprallywebapi.azurewebsites.net");
+            this._themeImage = new ThemeImage(this);
+            this._themeInfo = new ThemeInfoOperations(this);
+            this._baseUri = new Uri("http://localhost:60832");
         }
         
         /// <summary>
@@ -114,8 +124,9 @@ namespace PictureStampRally
             this._events = new Events(this);
             this._fileUploadSample = new FileUploadSample(this);
             this._score = new Score(this);
-            this._themeImages = new ThemeImages(this);
-            this._baseUri = new Uri("https://picturestamprallywebapi.azurewebsites.net");
+            this._themeImage = new ThemeImage(this);
+            this._themeInfo = new ThemeInfoOperations(this);
+            this._baseUri = new Uri("http://localhost:60832");
         }
         
         /// <summary>

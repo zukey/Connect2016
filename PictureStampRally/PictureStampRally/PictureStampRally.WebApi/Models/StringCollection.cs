@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 
-namespace PictureStampRally.Models
+namespace PictureStampRally.WebApiClient.Models
 {
     public static partial class StringCollection
     {

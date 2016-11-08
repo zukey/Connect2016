@@ -10,20 +10,20 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Rest;
 using Newtonsoft.Json.Linq;
-using PictureStampRally;
-using PictureStampRally.Models;
+using PictureStampRally.WebApiClient;
+using PictureStampRally.WebApiClient.Models;
 
-namespace PictureStampRally
+namespace PictureStampRally.WebApiClient
 {
-    internal partial class ThemeImages : IServiceOperations<PictureStampRallyWebApi>, IThemeImages
+    internal partial class ThemeInfoOperations : IServiceOperations<PictureStampRallyWebApi>, IThemeInfoOperations
     {
         /// <summary>
-        /// Initializes a new instance of the ThemeImages class.
+        /// Initializes a new instance of the ThemeInfoOperations class.
         /// </summary>
         /// <param name='client'>
         /// Reference to the service client.
         /// </param>
-        internal ThemeImages(PictureStampRallyWebApi client)
+        internal ThemeInfoOperations(PictureStampRallyWebApi client)
         {
             this._client = client;
         }
@@ -31,7 +31,8 @@ namespace PictureStampRally
         private PictureStampRallyWebApi _client;
         
         /// <summary>
-        /// Gets a reference to the PictureStampRally.PictureStampRallyWebApi.
+        /// Gets a reference to the
+        /// PictureStampRally.WebApiClient.PictureStampRallyWebApi.
         /// </summary>
         public PictureStampRallyWebApi Client
         {
@@ -44,7 +45,7 @@ namespace PictureStampRally
         /// <param name='cancellationToken'>
         /// Cancellation token.
         /// </param>
-        public async Task<HttpOperationResponse<IList<ThemeItem>>> GetWithOperationResponseAsync(int eventId, CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<HttpOperationResponse<IList<ThemeInfo>>> GetWithOperationResponseAsync(int eventId, CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // Tracing
             bool shouldTrace = ServiceClientTracing.IsEnabled;
@@ -59,7 +60,7 @@ namespace PictureStampRally
             
             // Construct URL
             string url = "";
-            url = url + "/api/ThemeImages";
+            url = url + "/api/ThemeInfo";
             List<string> queryParameters = new List<string>();
             queryParameters.Add("eventId=" + Uri.EscapeDataString(eventId.ToString()));
             if (queryParameters.Count > 0)
@@ -119,14 +120,14 @@ namespace PictureStampRally
             }
             
             // Create Result
-            HttpOperationResponse<IList<ThemeItem>> result = new HttpOperationResponse<IList<ThemeItem>>();
+            HttpOperationResponse<IList<ThemeInfo>> result = new HttpOperationResponse<IList<ThemeInfo>>();
             result.Request = httpRequest;
             result.Response = httpResponse;
             
             // Deserialize Response
             if (statusCode == HttpStatusCode.OK)
             {
-                IList<ThemeItem> resultModel = new List<ThemeItem>();
+                IList<ThemeInfo> resultModel = new List<ThemeInfo>();
                 JToken responseDoc = null;
                 if (string.IsNullOrEmpty(responseContent) == false)
                 {
@@ -134,7 +135,7 @@ namespace PictureStampRally
                 }
                 if (responseDoc != null)
                 {
-                    resultModel = ThemeItemCollection.DeserializeJson(responseDoc);
+                    resultModel = ThemeInfoCollection.DeserializeJson(responseDoc);
                 }
                 result.Body = resultModel;
             }

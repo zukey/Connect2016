@@ -7,9 +7,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Rest;
-using PictureStampRally;
+using PictureStampRally.WebApiClient;
 
-namespace PictureStampRally
+namespace PictureStampRally.WebApiClient
 {
     public partial interface IPictureStampRallyWebApi : IDisposable
     {
@@ -44,7 +44,12 @@ namespace PictureStampRally
             get; 
         }
         
-        IThemeImages ThemeImages
+        IThemeImage ThemeImage
+        {
+            get; 
+        }
+        
+        IThemeInfoOperations ThemeInfo
         {
             get; 
         }

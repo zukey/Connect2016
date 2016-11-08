@@ -7,11 +7,11 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Rest;
-using PictureStampRally.Models;
+using PictureStampRally.WebApiClient.Models;
 
-namespace PictureStampRally
+namespace PictureStampRally.WebApiClient
 {
-    public partial interface IThemeImages
+    public partial interface IThemeInfoOperations
     {
         /// <param name='eventId'>
         /// Required.
@@ -19,6 +19,6 @@ namespace PictureStampRally
         /// <param name='cancellationToken'>
         /// Cancellation token.
         /// </param>
-        Task<HttpOperationResponse<IList<ThemeItem>>> GetWithOperationResponseAsync(int eventId, CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<HttpOperationResponse<IList<ThemeInfo>>> GetWithOperationResponseAsync(int eventId, CancellationToken cancellationToken = default(System.Threading.CancellationToken));
     }
 }

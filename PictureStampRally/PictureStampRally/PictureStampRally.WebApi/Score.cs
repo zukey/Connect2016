@@ -12,10 +12,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Rest;
 using Newtonsoft.Json.Linq;
-using PictureStampRally;
-using PictureStampRally.Models;
+using PictureStampRally.WebApiClient;
+using PictureStampRally.WebApiClient.Models;
 
-namespace PictureStampRally
+namespace PictureStampRally.WebApiClient
 {
     internal partial class Score : IServiceOperations<PictureStampRallyWebApi>, IScore
     {
@@ -33,7 +33,8 @@ namespace PictureStampRally
         private PictureStampRallyWebApi _client;
         
         /// <summary>
-        /// Gets a reference to the PictureStampRally.PictureStampRallyWebApi.
+        /// Gets a reference to the
+        /// PictureStampRally.WebApiClient.PictureStampRallyWebApi.
         /// </summary>
         public PictureStampRallyWebApi Client
         {

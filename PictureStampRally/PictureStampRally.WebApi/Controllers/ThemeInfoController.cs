@@ -4,9 +4,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Data.Entity;
 using NLog;
 using PictureStampRally.WebApi.Models;
 using System.Net.Http.Headers;
+using PictureStampRally.WebApi.Models.DB;
 
 namespace PictureStampRally.WebApi.Controllers
 {
@@ -19,17 +21,21 @@ namespace PictureStampRally.WebApi.Controllers
         {
             _Logger.Info("ThemeInfo/Get");
 
-            // TODO: DBから取得
-            return new[]
+            using (var db = new Connect2016TZEntities())
             {
-                new ThemeInfo()
+                var targets = db.ThemeImage.AsNoTracking().Where(x => x.EventId == eventId).Include(x => x.HintProvider).ToArray();
+
+                var ret = targets.Select(x => new ThemeInfo()
                 {
-                    Id = 1,
-                    HintAddress = "郡山市大槻町",
-                    Score = null,
-                    Hints = new[] { "FCS", "どこぞ" }
-                }
-            };
+                    Id = x.Id,
+                    HintAddress = x.HintAddr,
+                    ImageBase64String = Convert.ToBase64String(x.Image),
+                    Score = x.Score?.ScoreValue,
+                    Hints = x.HintProvider.Select(h => h.Name).ToArray()
+                });
+
+                return ret;
+            }
         }
     }
 }

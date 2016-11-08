@@ -7,14 +7,14 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Rest;
-using PictureStampRally;
+using PictureStampRally.WebApiClient;
 
-namespace PictureStampRally
+namespace PictureStampRally.WebApiClient
 {
     public static partial class FileUploadSampleExtensions
     {
         /// <param name='operations'>
-        /// Reference to the PictureStampRally.IFileUploadSample.
+        /// Reference to the PictureStampRally.WebApiClient.IFileUploadSample.
         /// </param>
         /// <param name='buffer'>
         /// Required. アップロードするファイル
@@ -29,7 +29,7 @@ namespace PictureStampRally
         }
         
         /// <param name='operations'>
-        /// Reference to the PictureStampRally.IFileUploadSample.
+        /// Reference to the PictureStampRally.WebApiClient.IFileUploadSample.
         /// </param>
         /// <param name='buffer'>
         /// Required. アップロードするファイル

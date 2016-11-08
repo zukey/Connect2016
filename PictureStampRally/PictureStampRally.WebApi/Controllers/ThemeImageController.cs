@@ -20,31 +20,6 @@ namespace PictureStampRally.WebApi.Controllers
     {
         static Logger _Logger = LogManager.GetCurrentClassLogger();
 
-        [HttpGet]
-        [SwaggerOperationFilter(typeof(ThemeImageFileDownloadOperationFilter))]
-        public HttpResponseMessage Get([FromUri]int eventId, [FromUri]int themeImageId)
-        {
-            _Logger.Info("ThemeImage/Get");
-
-            using (var db = new Connect2016TZEntities())
-            {
-                var target = db.ThemeImage.FirstOrDefault(x => x.EventId == eventId && x.Id == themeImageId);
-                if (target == null)
-                {
-                    throw new HttpResponseException(HttpStatusCode.NotFound);
-                }
-
-                var response = new HttpResponseMessage(HttpStatusCode.OK);
-                response.Content = new ByteArrayContent(target.Image);
-                response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
-                {
-                    FileName = string.Format("{0}-{1}", target.EventId, target.Id)
-                };
-
-                return response;
-            }
-        }
-
         [HttpPost]
         [SwaggerOperationFilter(typeof(ThemeImageRegistOparationFilter))]
         public async Task<IHttpActionResult> Post()

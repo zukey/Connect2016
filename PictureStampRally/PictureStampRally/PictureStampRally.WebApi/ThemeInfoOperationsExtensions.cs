@@ -7,30 +7,32 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Rest;
-using PictureStampRally;
-using PictureStampRally.Models;
+using PictureStampRally.WebApiClient;
+using PictureStampRally.WebApiClient.Models;
 
-namespace PictureStampRally
+namespace PictureStampRally.WebApiClient
 {
-    public static partial class ThemeImagesExtensions
+    public static partial class ThemeInfoOperationsExtensions
     {
         /// <param name='operations'>
-        /// Reference to the PictureStampRally.IThemeImages.
+        /// Reference to the
+        /// PictureStampRally.WebApiClient.IThemeInfoOperations.
         /// </param>
         /// <param name='eventId'>
         /// Required.
         /// </param>
-        public static IList<ThemeItem> Get(this IThemeImages operations, int eventId)
+        public static IList<ThemeInfo> Get(this IThemeInfoOperations operations, int eventId)
         {
             return Task.Factory.StartNew((object s) => 
             {
-                return ((IThemeImages)s).GetAsync(eventId);
+                return ((IThemeInfoOperations)s).GetAsync(eventId);
             }
             , operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
         }
         
         /// <param name='operations'>
-        /// Reference to the PictureStampRally.IThemeImages.
+        /// Reference to the
+        /// PictureStampRally.WebApiClient.IThemeInfoOperations.
         /// </param>
         /// <param name='eventId'>
         /// Required.
@@ -38,9 +40,9 @@ namespace PictureStampRally
         /// <param name='cancellationToken'>
         /// Cancellation token.
         /// </param>
-        public static async Task<IList<ThemeItem>> GetAsync(this IThemeImages operations, int eventId, CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public static async Task<IList<ThemeInfo>> GetAsync(this IThemeInfoOperations operations, int eventId, CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Microsoft.Rest.HttpOperationResponse<System.Collections.Generic.IList<PictureStampRally.Models.ThemeItem>> result = await operations.GetWithOperationResponseAsync(eventId, cancellationToken).ConfigureAwait(false);
+            Microsoft.Rest.HttpOperationResponse<System.Collections.Generic.IList<PictureStampRally.WebApiClient.Models.ThemeInfo>> result = await operations.GetWithOperationResponseAsync(eventId, cancellationToken).ConfigureAwait(false);
             return result.Body;
         }
     }

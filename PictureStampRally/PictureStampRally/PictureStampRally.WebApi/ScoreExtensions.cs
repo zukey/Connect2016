@@ -7,15 +7,15 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Rest;
-using PictureStampRally;
-using PictureStampRally.Models;
+using PictureStampRally.WebApiClient;
+using PictureStampRally.WebApiClient.Models;
 
-namespace PictureStampRally
+namespace PictureStampRally.WebApiClient
 {
     public static partial class ScoreExtensions
     {
         /// <param name='operations'>
-        /// Reference to the PictureStampRally.IScore.
+        /// Reference to the PictureStampRally.WebApiClient.IScore.
         /// </param>
         /// <param name='file'>
         /// Required. アップロードするファイル
@@ -33,7 +33,7 @@ namespace PictureStampRally
         }
         
         /// <param name='operations'>
-        /// Reference to the PictureStampRally.IScore.
+        /// Reference to the PictureStampRally.WebApiClient.IScore.
         /// </param>
         /// <param name='file'>
         /// Required. アップロードするファイル
@@ -46,12 +46,12 @@ namespace PictureStampRally
         /// </param>
         public static async Task<ScoreCheckResult> CheckAsync(this IScore operations, Stream file, int themeImageId, CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Microsoft.Rest.HttpOperationResponse<PictureStampRally.Models.ScoreCheckResult> result = await operations.CheckWithOperationResponseAsync(file, themeImageId, cancellationToken).ConfigureAwait(false);
+            Microsoft.Rest.HttpOperationResponse<PictureStampRally.WebApiClient.Models.ScoreCheckResult> result = await operations.CheckWithOperationResponseAsync(file, themeImageId, cancellationToken).ConfigureAwait(false);
             return result.Body;
         }
         
         /// <param name='operations'>
-        /// Reference to the PictureStampRally.IScore.
+        /// Reference to the PictureStampRally.WebApiClient.IScore.
         /// </param>
         /// <param name='file'>
         /// Required. アップロードするファイル
@@ -69,7 +69,7 @@ namespace PictureStampRally
         }
         
         /// <param name='operations'>
-        /// Reference to the PictureStampRally.IScore.
+        /// Reference to the PictureStampRally.WebApiClient.IScore.
         /// </param>
         /// <param name='file'>
         /// Required. アップロードするファイル
@@ -82,7 +82,7 @@ namespace PictureStampRally
         /// </param>
         public static async Task<ScoreCheckResult> RegistAsync(this IScore operations, Stream file, int themeImageId, CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Microsoft.Rest.HttpOperationResponse<PictureStampRally.Models.ScoreCheckResult> result = await operations.RegistWithOperationResponseAsync(file, themeImageId, cancellationToken).ConfigureAwait(false);
+            Microsoft.Rest.HttpOperationResponse<PictureStampRally.WebApiClient.Models.ScoreCheckResult> result = await operations.RegistWithOperationResponseAsync(file, themeImageId, cancellationToken).ConfigureAwait(false);
             return result.Body;
         }
     }

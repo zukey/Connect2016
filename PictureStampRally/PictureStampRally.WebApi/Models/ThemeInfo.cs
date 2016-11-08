@@ -9,6 +9,7 @@ namespace PictureStampRally.WebApi.Models
     {
         public int Id { get; set; }
         public string HintAddress { get; set; }
+        public string ImageBase64String { get; set; }
         public IEnumerable<string> Hints { get; set; }
         public int? Score { get; set; }
     }

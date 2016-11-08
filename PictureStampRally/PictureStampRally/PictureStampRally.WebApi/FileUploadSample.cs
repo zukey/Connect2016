@@ -3,27 +3,28 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Rest;
 using Newtonsoft.Json.Linq;
-using PictureStampRally;
-using PictureStampRally.Models;
+using PictureStampRally.WebApiClient;
 
-namespace PictureStampRally
+namespace PictureStampRally.WebApiClient
 {
-    internal partial class Events : IServiceOperations<PictureStampRallyWebApi>, IEvents
+    internal partial class FileUploadSample : IServiceOperations<PictureStampRallyWebApi>, IFileUploadSample
     {
         /// <summary>
-        /// Initializes a new instance of the Events class.
+        /// Initializes a new instance of the FileUploadSample class.
         /// </summary>
         /// <param name='client'>
         /// Reference to the service client.
         /// </param>
-        internal Events(PictureStampRallyWebApi client)
+        internal FileUploadSample(PictureStampRallyWebApi client)
         {
             this._client = client;
         }
@@ -31,18 +32,28 @@ namespace PictureStampRally
         private PictureStampRallyWebApi _client;
         
         /// <summary>
-        /// Gets a reference to the PictureStampRally.PictureStampRallyWebApi.
+        /// Gets a reference to the
+        /// PictureStampRally.WebApiClient.PictureStampRallyWebApi.
         /// </summary>
         public PictureStampRallyWebApi Client
         {
             get { return this._client; }
         }
         
+        /// <param name='buffer'>
+        /// Required. アップロードするファイル
+        /// </param>
         /// <param name='cancellationToken'>
         /// Cancellation token.
         /// </param>
-        public async Task<HttpOperationResponse<IList<EventInfo>>> GetWithOperationResponseAsync(CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<HttpOperationResponse<string>> PostWithOperationResponseAsync(Stream buffer, CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            // Validate
+            if (buffer == null)
+            {
+                throw new ArgumentNullException("buffer");
+            }
+            
             // Tracing
             bool shouldTrace = ServiceClientTracing.IsEnabled;
             string invocationId = null;
@@ -50,12 +61,13 @@ namespace PictureStampRally
             {
                 invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
-                ServiceClientTracing.Enter(invocationId, this, "GetAsync", tracingParameters);
+                tracingParameters.Add("buffer", buffer);
+                ServiceClientTracing.Enter(invocationId, this, "PostAsync", tracingParameters);
             }
             
             // Construct URL
             string url = "";
-            url = url + "/api/Events";
+            url = url + "/api/FileUploadSample";
             string baseUrl = this.Client.BaseUri.AbsoluteUri;
             // Trim '/' character from the end of baseUrl and beginning of url.
             if (baseUrl[baseUrl.Length - 1] == '/')
@@ -71,8 +83,10 @@ namespace PictureStampRally
             
             // Create HTTP transport objects
             HttpRequestMessage httpRequest = new HttpRequestMessage();
-            httpRequest.Method = HttpMethod.Get;
+            httpRequest.Method = HttpMethod.Post;
             httpRequest.RequestUri = new Uri(url);
+            
+            // Set Headers
             
             // Set Credentials
             if (this.Client.Credentials != null)
@@ -80,6 +94,11 @@ namespace PictureStampRally
                 cancellationToken.ThrowIfCancellationRequested();
                 await this.Client.Credentials.ProcessHttpRequestAsync(httpRequest, cancellationToken).ConfigureAwait(false);
             }
+            
+            // Serialize Request
+            Stream requestContent = buffer;
+            httpRequest.Content = new StreamContent(requestContent);
+            httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/octet-stream");
             
             // Send Request
             if (shouldTrace)
@@ -109,14 +128,14 @@ namespace PictureStampRally
             }
             
             // Create Result
-            HttpOperationResponse<IList<EventInfo>> result = new HttpOperationResponse<IList<EventInfo>>();
+            HttpOperationResponse<string> result = new HttpOperationResponse<string>();
             result.Request = httpRequest;
             result.Response = httpResponse;
             
             // Deserialize Response
             if (statusCode == HttpStatusCode.OK)
             {
-                IList<EventInfo> resultModel = new List<EventInfo>();
+                string resultModel = default(string);
                 JToken responseDoc = null;
                 if (string.IsNullOrEmpty(responseContent) == false)
                 {
@@ -124,7 +143,7 @@ namespace PictureStampRally
                 }
                 if (responseDoc != null)
                 {
-                    resultModel = EventInfoCollection.DeserializeJson(responseDoc);
+                    resultModel = responseDoc.ToString(Newtonsoft.Json.Formatting.Indented);
                 }
                 result.Body = resultModel;
             }

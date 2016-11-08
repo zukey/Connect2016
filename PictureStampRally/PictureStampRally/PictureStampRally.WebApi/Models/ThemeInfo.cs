@@ -7,9 +7,9 @@ using System.Linq;
 using Microsoft.Rest;
 using Newtonsoft.Json.Linq;
 
-namespace PictureStampRally.Models
+namespace PictureStampRally.WebApiClient.Models
 {
-    public partial class ThemeItem
+    public partial class ThemeInfo
     {
         private string _hintAddress;
         
@@ -44,15 +44,15 @@ namespace PictureStampRally.Models
             set { this._id = value; }
         }
         
-        private string _image;
+        private string _imageBase64String;
         
         /// <summary>
         /// Optional.
         /// </summary>
-        public string Image
+        public string ImageBase64String
         {
-            get { return this._image; }
-            set { this._image = value; }
+            get { return this._imageBase64String; }
+            set { this._imageBase64String = value; }
         }
         
         private int? _score;
@@ -67,9 +67,9 @@ namespace PictureStampRally.Models
         }
         
         /// <summary>
-        /// Initializes a new instance of the ThemeItem class.
+        /// Initializes a new instance of the ThemeInfo class.
         /// </summary>
-        public ThemeItem()
+        public ThemeInfo()
         {
             this.Hints = new LazyList<string>();
         }
@@ -99,10 +99,10 @@ namespace PictureStampRally.Models
                 {
                     this.Id = ((int)idValue);
                 }
-                JToken imageValue = inputObject["Image"];
-                if (imageValue != null && imageValue.Type != JTokenType.Null)
+                JToken imageBase64StringValue = inputObject["ImageBase64String"];
+                if (imageBase64StringValue != null && imageBase64StringValue.Type != JTokenType.Null)
                 {
-                    this.Image = ((string)imageValue);
+                    this.ImageBase64String = ((string)imageBase64StringValue);
                 }
                 JToken scoreValue = inputObject["Score"];
                 if (scoreValue != null && scoreValue.Type != JTokenType.Null)
