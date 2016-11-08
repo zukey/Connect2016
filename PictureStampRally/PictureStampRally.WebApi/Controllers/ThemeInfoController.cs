@@ -6,31 +6,30 @@ using System.Net.Http;
 using System.Web.Http;
 using NLog;
 using PictureStampRally.WebApi.Models;
+using System.Net.Http.Headers;
 
 namespace PictureStampRally.WebApi.Controllers
 {
-    public class ThemeImagesController : ApiController
+    public class ThemeInfoController : ApiController
     {
         static Logger _Logger = LogManager.GetCurrentClassLogger();
 
         [HttpGet]
-        public IEnumerable<ThemeItem> Get(int eventId)
+        public IEnumerable<ThemeInfo> Get(int eventId)
         {
-            _Logger.Info("ThemeImages/Get");
+            _Logger.Info("ThemeInfo/Get");
 
             // TODO: DBから取得
-            return new[] 
+            return new[]
             {
-                new ThemeItem()
+                new ThemeInfo()
                 {
                     Id = 1,
                     HintAddress = "郡山市大槻町",
-                    Image = new byte[0],
                     Score = null,
                     Hints = new[] { "FCS", "どこぞ" }
                 }
             };
-            throw new NotImplementedException();
         }
     }
 }

@@ -169,7 +169,8 @@
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\FileUploadSampleController.cs" />
     <Compile Include="Controllers\ScoreController.cs" />
-    <Compile Include="Controllers\ThemeImagesController.cs" />
+    <Compile Include="Controllers\ThemeImageController.cs" />
+    <Compile Include="Controllers\ThemeInfoController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -202,10 +203,13 @@
       <DependentUpon>Connect2016TZ.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EventInfo.cs" />
+    <Compile Include="Models\ThemeImageFileDownloadOperationFilter.cs" />
     <Compile Include="Models\ImageApproximate\ScoreCalculator.cs" />
     <Compile Include="Models\ScoreCheckResult.cs" />
     <Compile Include="Models\ScoreOperationFilter.cs" />
-    <Compile Include="Models\ThemeItem.cs" />
+    <Compile Include="Models\ThemeImageRegistOparationFilter.cs" />
+    <Compile Include="Models\ThemeImageUpdateOparationFilter.cs" />
+    <Compile Include="Models\ThemeInfo.cs" />
     <Compile Include="Models\UploadFileOperationFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
