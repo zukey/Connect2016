@@ -144,6 +144,9 @@
     <None Include="PictureStampRally_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Image\IMG_1.JPG" />
+    <Content Include="Image\IMG_2.JPG" />
+    <Content Include="Image\IMG_3.JPG" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
