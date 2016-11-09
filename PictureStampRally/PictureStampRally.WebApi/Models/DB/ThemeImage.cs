@@ -22,8 +22,8 @@ namespace PictureStampRally.WebApi.Models.DB
     
         public int Id { get; set; }
         public int EventId { get; set; }
-        public byte[] Image { get; set; }
         public string HintAddr { get; set; }
+        public string ImageUrl { get; set; }
     
         public virtual Event Event { get; set; }
         public virtual Score Score { get; set; }

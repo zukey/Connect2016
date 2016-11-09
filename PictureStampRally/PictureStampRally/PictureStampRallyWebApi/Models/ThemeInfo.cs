@@ -44,15 +44,15 @@ namespace PictureStampRally.Models
             set { this._id = value; }
         }
         
-        private string _imageBase64String;
+        private string _imageUrl;
         
         /// <summary>
         /// Optional.
         /// </summary>
-        public string ImageBase64String
+        public string ImageUrl
         {
-            get { return this._imageBase64String; }
-            set { this._imageBase64String = value; }
+            get { return this._imageUrl; }
+            set { this._imageUrl = value; }
         }
         
         private int? _score;
@@ -99,10 +99,10 @@ namespace PictureStampRally.Models
                 {
                     this.Id = ((int)idValue);
                 }
-                JToken imageBase64StringValue = inputObject["ImageBase64String"];
-                if (imageBase64StringValue != null && imageBase64StringValue.Type != JTokenType.Null)
+                JToken imageUrlValue = inputObject["ImageUrl"];
+                if (imageUrlValue != null && imageUrlValue.Type != JTokenType.Null)
                 {
-                    this.ImageBase64String = ((string)imageBase64StringValue);
+                    this.ImageUrl = ((string)imageUrlValue);
                 }
                 JToken scoreValue = inputObject["Score"];
                 if (scoreValue != null && scoreValue.Type != JTokenType.Null)

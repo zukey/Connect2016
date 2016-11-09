@@ -11,8 +11,8 @@ namespace PictureStampRally.ViewModels
 {
     public class ViewScorePageViewModel : NotificationBase
     {
-        IEnumerable<ThemeInfo> _themeList;
-        public IEnumerable<ThemeInfo> ThemeList
+        IEnumerable<ThemeInfoViewItem> _themeList;
+        public IEnumerable<ThemeInfoViewItem> ThemeList
         {
             get { return _themeList; }
             private set
@@ -21,8 +21,8 @@ namespace PictureStampRally.ViewModels
             }
         }
 
-        ThemeInfo _selectedTheme;
-        public ThemeInfo SelectedTheme
+        ThemeInfoViewItem _selectedTheme;
+        public ThemeInfoViewItem SelectedTheme
         {
             get { return _selectedTheme; }
             set
@@ -36,8 +36,8 @@ namespace PictureStampRally.ViewModels
         {
             using (var api = new PictureStampRallyWebApi())
             {
-                ThemeList = await api.ThemeInfo.GetAsync(1);
-
+                var items = await api.ThemeInfo.GetAsync(1);
+                ThemeList = items.Select(x => new ThemeInfoViewItem(x)).ToArray();
                 if (ThemeList.Any())
                 {
                     SelectedTheme = ThemeList.First();

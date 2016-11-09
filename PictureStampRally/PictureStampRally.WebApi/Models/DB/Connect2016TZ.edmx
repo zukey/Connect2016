@@ -42,8 +42,8 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EventId" Type="int" Nullable="false" />
-          <Property Name="Image" Type="varbinary(max)" Nullable="false" />
           <Property Name="HintAddr" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ImageUrl" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <Association Name="FK_HintChain_HintProvider">
           <End Role="HintProvider" Type="Self.HintProvider" Multiplicity="1">
@@ -178,8 +178,8 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EventId" Type="Int32" Nullable="false" />
-          <Property Name="Image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="HintAddr" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Event" Relationship="Connect2016TZModel.FK_ThemeImage_Event" FromRole="ThemeImage" ToRole="Event" />
           <NavigationProperty Name="Score" Relationship="Connect2016TZModel.FK_Score_ThemeImage" FromRole="ThemeImage" ToRole="Score" />
           <NavigationProperty Name="HintProvider" Relationship="Connect2016TZModel.HintChain" FromRole="ThemeImage" ToRole="HintProvider" />
@@ -251,8 +251,8 @@
           <EntitySetMapping Name="ThemeImage">
             <EntityTypeMapping TypeName="Connect2016TZModel.ThemeImage">
               <MappingFragment StoreEntitySet="ThemeImage">
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
                 <ScalarProperty Name="HintAddr" ColumnName="HintAddr" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="EventId" ColumnName="EventId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

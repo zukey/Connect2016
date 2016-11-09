@@ -31,7 +31,7 @@ namespace PictureStampRally.WebApi.Controllers
                     {
                         Id = x.Id,
                         HintAddress = x.HintAddr,
-                        ImageBase64String = Convert.ToBase64String(x.Image),
+                        ImageUrl = x.ImageUrl,
                         Score = x.Score?.ScoreValue,
                         Hints = x.HintProvider.Select(h => h.Name).ToArray()
                     }).ToArray();

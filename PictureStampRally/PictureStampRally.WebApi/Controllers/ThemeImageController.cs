@@ -51,11 +51,17 @@ namespace PictureStampRally.WebApi.Controllers
                     {
                         EventId = int.Parse(eventIdString),
                         HintAddr = hintAddr,
-                        Image = buffer,
+                        ImageUrl = "",
                     };
 
                     db.ThemeImage.Add(item);
 
+                    db.SaveChanges();
+
+                    // Blob Upload
+                    var url = BlobManager.Upload(buffer, item.EventId, item.Id);
+
+                    item.ImageUrl = url;
                     db.SaveChanges();
                 }
 
@@ -102,7 +108,10 @@ namespace PictureStampRally.WebApi.Controllers
                         throw new HttpResponseException(HttpStatusCode.NotFound);
                     }
 
-                    target.Image = buffer;
+                    // Blob Upload
+                    var url = BlobManager.Upload(buffer, target.EventId, themeId);
+
+                    target.ImageUrl = url;
                     target.HintAddr = hintAddr;
 
                     db.SaveChanges();
