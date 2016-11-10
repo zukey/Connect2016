@@ -59,7 +59,7 @@ namespace PictureStampRally.WebApi.Controllers
                     db.SaveChanges();
 
                     // Blob Upload
-                    var url = BlobManager.Upload(buffer, item.EventId, item.Id);
+                    var url = BlobManager.UploadThemeImage(buffer, item.EventId, item.Id);
 
                     item.ImageUrl = url;
                     db.SaveChanges();
@@ -109,7 +109,7 @@ namespace PictureStampRally.WebApi.Controllers
                     }
 
                     // Blob Upload
-                    var url = BlobManager.Upload(buffer, target.EventId, themeId);
+                    var url = BlobManager.UploadThemeImage(buffer, target.EventId, themeId);
 
                     target.ImageUrl = url;
                     target.HintAddr = hintAddr;

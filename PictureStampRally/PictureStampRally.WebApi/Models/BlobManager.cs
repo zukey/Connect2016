@@ -10,7 +10,17 @@ namespace PictureStampRally.WebApi.Models
 {
     public static class BlobManager
     {
-        public static string Upload(byte[] data, int eventId, int themeImageId)
+        public static string UploadThemeImage(byte[] data, int eventId, int themeImageId)
+        {
+            return Upload(data, "images", eventId, themeImageId);
+        }
+
+        public static string UploadCapturedImage(byte[] data, int eventId, int themeImageId)
+        {
+            return Upload(data, "captured", eventId, themeImageId);
+        }
+
+        private static string Upload(byte[] data, string folder, int eventId, int themeImageId)
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
                 CloudConfigurationManager.GetSetting("StorageConnectionString"));
@@ -19,7 +29,7 @@ namespace PictureStampRally.WebApi.Models
 
             var container = blobClient.GetContainerReference("connect2016");
 
-            var blobName = string.Format("images/{0}-{1}", eventId, themeImageId);
+            var blobName = string.Format("{0}/{1}-{2}", folder, eventId, themeImageId);
             var blockBlob = container.GetBlockBlobReference(blobName);
 
             blockBlob.UploadFromByteArray(data, 0, data.Length);

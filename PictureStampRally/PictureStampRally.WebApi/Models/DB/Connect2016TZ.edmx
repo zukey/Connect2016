@@ -35,6 +35,7 @@
           </Key>
           <Property Name="ThemeImageId" Type="int" Nullable="false" />
           <Property Name="ScoreValue" Type="int" Nullable="false" />
+          <Property Name="CaptureImageUrl" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="ThemeImage">
           <Key>
@@ -171,6 +172,7 @@
           <Property Name="ThemeImageId" Type="Int32" Nullable="false" />
           <Property Name="ScoreValue" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ThemeImage" Relationship="Connect2016TZModel.FK_Score_ThemeImage" FromRole="Score" ToRole="ThemeImage" />
+          <Property Name="CaptureImageUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ThemeImage">
           <Key>
@@ -243,6 +245,7 @@
           <EntitySetMapping Name="Score">
             <EntityTypeMapping TypeName="Connect2016TZModel.Score">
               <MappingFragment StoreEntitySet="Score">
+                <ScalarProperty Name="CaptureImageUrl" ColumnName="CaptureImageUrl" />
                 <ScalarProperty Name="ScoreValue" ColumnName="ScoreValue" />
                 <ScalarProperty Name="ThemeImageId" ColumnName="ThemeImageId" />
               </MappingFragment>

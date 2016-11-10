@@ -16,6 +16,7 @@ namespace PictureStampRally.WebApi.Models.DB
     {
         public int ThemeImageId { get; set; }
         public int ScoreValue { get; set; }
+        public string CaptureImageUrl { get; set; }
     
         public virtual ThemeImage ThemeImage { get; set; }
     }
