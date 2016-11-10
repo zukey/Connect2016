@@ -4,8 +4,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Data.Entity;
 using NLog;
 using PictureStampRally.WebApi.Models;
+using System.Net.Http.Headers;
+using PictureStampRally.WebApi.Models.DB;
 
 namespace PictureStampRally.WebApi.Controllers
 {
@@ -18,12 +21,27 @@ namespace PictureStampRally.WebApi.Controllers
         {
             _Logger.Info("Events/Get");
 
-            // TODO: DBから取得
-            return new[] 
+            try
             {
-                new EventInfo() { Id = 1, Name = "郡山", BorderScore = 500 },
-                new EventInfo() { Id = 2, Name = "会津", BorderScore = 600 },
-            };
+                using (var db = new Connect2016TZEntities())
+                {
+                    var targets = db.Event.AsNoTracking().ToArray();
+
+                    var ret = targets.Select(x => new EventInfo()
+                    {
+                        Id = x.Id,
+                        Name = x.Name,
+                        BorderScore = x.BorderScore
+                    }).ToArray();
+
+                    return ret;
+                }
+            }
+            catch (Exception ex)
+            {
+                _Logger.Info(ex, "例外");
+                throw new HttpResponseException(HttpStatusCode.InternalServerError);
+            }
         }
     }
 }
