@@ -98,6 +98,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewScorePageParameter.cs" />
     <Compile Include="PictureStampRallyWebApi\Events.cs" />
     <Compile Include="PictureStampRallyWebApi\EventsExtensions.cs" />
     <Compile Include="PictureStampRallyWebApi\FileUploadSample.cs" />
@@ -124,9 +125,11 @@
     <Compile Include="PictureStampRallyWebApi\ThemeInfoOperationsExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\NotificationBase.cs" />
+    <Compile Include="ViewModels\EventPageViewModel.cs" />
     <Compile Include="ViewModels\SamplePageViewModel.cs" />
     <Compile Include="ViewModels\ThemeInfoViewItem.cs" />
     <Compile Include="ViewModels\ViewScorePageViewModel.cs" />
+    <Compile Include="Views\CameraAppManager.cs" />
     <Compile Include="Views\EventPage.xaml.cs">
       <DependentUpon>EventPage.xaml</DependentUpon>
     </Compile>

@@ -3,45 +3,48 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using PictureStampRally.Models;
-
+using System.IO;
+using Windows.Storage;
 
 namespace PictureStampRally.ViewModels
 {
     public class ViewScorePageViewModel : NotificationBase
     {
-        IEnumerable<ThemeInfoViewItem> _themeList;
-        public IEnumerable<ThemeInfoViewItem> ThemeList
-        {
-            get { return _themeList; }
-            private set
-            {
-                SetProperty(ref _themeList, value);
-            }
-        }
+        ViewScorePageParameter _param;
 
-        ThemeInfoViewItem _selectedTheme;
-        public ThemeInfoViewItem SelectedTheme
+        private int? _score;
+        public int? Score
         {
-            get { return _selectedTheme; }
+            get { return _score; }
             set
             {
-                SetProperty(ref _selectedTheme, value);
+                SetProperty(ref _score, value);
             }
         }
 
 
-        public async Task LoadThemeList()
+        public async Task Initialize(ViewScorePageParameter param)
         {
+            _param = param;
+            var f = await StorageFile.GetFileFromPathAsync(param.CaptureImageFilePath);
+
             using (var api = new PictureStampRallyWebApi())
+            using (var stream = await f.OpenStreamForReadAsync())
             {
-                var items = await api.ThemeInfo.GetAsync(1);
-                ThemeList = items.Select(x => new ThemeInfoViewItem(x)).ToArray();
-                if (ThemeList.Any())
-                {
-                    SelectedTheme = ThemeList.First();
-                }
+                var result = await api.Score.CheckAsync(stream, param.ThemeImageId);
+                Score = result.Score;
+            }
+        }
+
+        public async Task Regist()
+        {
+            var f = await StorageFile.GetFileFromPathAsync(_param.CaptureImageFilePath);
+
+            using (var api = new PictureStampRallyWebApi())
+            using (var stream = await f.OpenStreamForReadAsync())
+            {
+                var result = await api.Score.RegistAsync(stream, _param.ThemeImageId);
             }
         }
 

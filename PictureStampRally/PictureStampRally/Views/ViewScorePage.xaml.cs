@@ -12,12 +12,16 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Media.Imaging;
 
 using Windows.Media.Capture;
 using Windows.Storage;
 
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234238 を参照してください
+
+using PictureStampRally.Models;
+using PictureStampRally.ViewModels;
 
 namespace PictureStampRally.Views
 {
@@ -26,9 +30,28 @@ namespace PictureStampRally.Views
     /// </summary>
     public sealed partial class ViewScore : Page
     {
+        ViewScorePageViewModel _viewModel;
+
         public ViewScore()
         {
             this.InitializeComponent();
+            _viewModel = new ViewScorePageViewModel();
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            var paramJsonString = e.Parameter as string;
+            if (paramJsonString == null) { return; }
+
+            // パラメータ型に戻す
+            var param = ViewScorePageParameter.CreateFrom(paramJsonString);
+
+            await _viewModel.Initialize(param);
+
+            // TODO: キャプチャした画像ファイルを表示
+            var bi = new BitmapImage(new Uri(param.CaptureImageFilePath));
         }
 
         private void buttonhome_Click(object sender, RoutedEventArgs e)
@@ -38,17 +61,7 @@ namespace PictureStampRally.Views
 
         private async void buttonRePhotograph_Click(object sender, RoutedEventArgs e)
         {
-            CameraCaptureUI captureUI = new CameraCaptureUI();
-            captureUI.PhotoSettings.Format = CameraCaptureUIPhotoFormat.Jpeg;
-            captureUI.PhotoSettings.CroppedSizeInPixels = new Size(200, 200);
-
-            StorageFile photo = await captureUI.CaptureFileAsync(CameraCaptureUIMode.Photo);
-
-            if (photo == null)
-            {
-                // User cancelled photo capture
-                return;
-            }
+            await CameraAppManager.CameraCaptureAndNavigateScore(this, 2);
         }
     }
 }
