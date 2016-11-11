@@ -12,5 +12,6 @@ namespace PictureStampRally.WebApi.Models
         public string ImageUrl { get; set; }
         public IEnumerable<string> Hints { get; set; }
         public int? Score { get; set; }
+        public string CapturedImageUrl { get; set; }
     }
 }

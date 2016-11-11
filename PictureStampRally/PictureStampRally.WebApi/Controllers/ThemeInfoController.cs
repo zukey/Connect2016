@@ -33,6 +33,7 @@ namespace PictureStampRally.WebApi.Controllers
                         HintAddress = x.HintAddr,
                         ImageUrl = x.ImageUrl,
                         Score = x.Score?.ScoreValue,
+                        CapturedImageUrl = x.Score?.CaptureImageUrl,
                         Hints = x.HintProvider.Select(h => h.Name).ToArray()
                     }).ToArray();
 

@@ -11,6 +11,17 @@ namespace PictureStampRally.Models
 {
     public partial class ThemeInfo
     {
+        private string _capturedImageUrl;
+        
+        /// <summary>
+        /// Optional.
+        /// </summary>
+        public string CapturedImageUrl
+        {
+            get { return this._capturedImageUrl; }
+            set { this._capturedImageUrl = value; }
+        }
+        
         private string _hintAddress;
         
         /// <summary>
@@ -81,6 +92,11 @@ namespace PictureStampRally.Models
         {
             if (inputObject != null && inputObject.Type != JTokenType.Null)
             {
+                JToken capturedImageUrlValue = inputObject["CapturedImageUrl"];
+                if (capturedImageUrlValue != null && capturedImageUrlValue.Type != JTokenType.Null)
+                {
+                    this.CapturedImageUrl = ((string)capturedImageUrlValue);
+                }
                 JToken hintAddressValue = inputObject["HintAddress"];
                 if (hintAddressValue != null && hintAddressValue.Type != JTokenType.Null)
                 {
