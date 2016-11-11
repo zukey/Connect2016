@@ -51,8 +51,7 @@ namespace PictureStampRally.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                Debug.Print("例外");
-                Debug.Print(ex.ToString());
+                _Logger.Warn(ex, "例外");
                 throw;
             }
         }
@@ -124,8 +123,7 @@ namespace PictureStampRally.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                Debug.Print("例外");
-                Debug.Print(ex.ToString());
+                _Logger.Warn(ex, "例外");
                 throw;
             }
         }

@@ -98,6 +98,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\ScoreOperationRequestContentCreator.cs" />
     <Compile Include="Models\ViewScorePageParameter.cs" />
     <Compile Include="PictureStampRallyWebApi\Events.cs" />
     <Compile Include="PictureStampRallyWebApi\EventsExtensions.cs" />

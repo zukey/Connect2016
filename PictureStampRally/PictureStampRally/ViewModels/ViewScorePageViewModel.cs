@@ -27,13 +27,21 @@ namespace PictureStampRally.ViewModels
         public async Task Initialize(ViewScorePageParameter param)
         {
             _param = param;
-            var f = await StorageFile.GetFileFromPathAsync(param.CaptureImageFilePath);
-
-            using (var api = new PictureStampRallyWebApi())
-            using (var stream = await f.OpenStreamForReadAsync())
+            try
             {
-                var result = await api.Score.CheckAsync(stream, param.ThemeImageId);
-                Score = result.Score;
+                var f = await StorageFile.GetFileFromPathAsync(param.CaptureImageFilePath);
+
+                using (var api = new PictureStampRallyWebApi())
+                using (var stream = await f.OpenStreamForReadAsync())
+                {
+                    var result = await api.Score.CheckAsync(stream, param.ThemeImageId);
+                    Score = result.Score;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("ScoreCheck例外");
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
         }
 

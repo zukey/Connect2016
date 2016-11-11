@@ -100,10 +100,8 @@ namespace PictureStampRally
             }
             
             // Serialize Request
-            Stream requestContent = file;
-            httpRequest.Content = new StreamContent(requestContent);
-            httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/octet-stream");
-            
+            httpRequest.Content = ScoreOperationRequestContentCreator.Create(file, themeImageId);
+
             // Send Request
             if (shouldTrace)
             {
@@ -217,12 +215,10 @@ namespace PictureStampRally
                 cancellationToken.ThrowIfCancellationRequested();
                 await this.Client.Credentials.ProcessHttpRequestAsync(httpRequest, cancellationToken).ConfigureAwait(false);
             }
-            
+
             // Serialize Request
-            Stream requestContent = file;
-            httpRequest.Content = new StreamContent(requestContent);
-            httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/octet-stream");
-            
+            httpRequest.Content = ScoreOperationRequestContentCreator.Create(file, themeImageId);
+
             // Send Request
             if (shouldTrace)
             {

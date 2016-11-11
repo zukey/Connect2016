@@ -43,7 +43,7 @@ namespace PictureStampRally.WebApi.Controllers
             catch (Exception ex)
             {
                 _Logger.Warn(ex, "例外");
-                throw new HttpResponseException(HttpStatusCode.InternalServerError);
+                throw;
             }
         }
     }
