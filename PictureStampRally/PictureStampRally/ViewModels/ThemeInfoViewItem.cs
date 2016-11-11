@@ -17,10 +17,16 @@ namespace PictureStampRally.ViewModels
             Score = source.Score;
             Hints = source.Hints;
             ImageUrl = source.ImageUrl;
+            CapturedImageUrl = source.CapturedImageUrl;
 
-            Image = new BitmapImage(new Uri(source.ImageUrl));
+            ThemeImage = new BitmapImage(new Uri(source.ImageUrl));
+            if (source.CapturedImageUrl != null)
+            {
+                CapturedImage = new BitmapImage(new Uri(source.CapturedImageUrl));
+            }
         }
 
-        public BitmapImage Image { get; private set; }
+        public BitmapImage ThemeImage { get; private set; }
+        public BitmapImage CapturedImage { get; private set; }
     }
 }
