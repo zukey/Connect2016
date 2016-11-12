@@ -33,8 +33,6 @@ namespace PictureStampRally.WebApi.Controllers
                     throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
                 }
 
-                // TODO: ID有無判定
-
                 // アップロードされたファイルを取得
                 var provider = await Request.Content.ReadAsMultipartAsync();
                 var fileContent = provider.Contents
@@ -45,9 +43,38 @@ namespace PictureStampRally.WebApi.Controllers
                 var idContent = provider.Contents
                     .First(x => x.Headers.ContentDisposition.Name == JsonConvert.SerializeObject("themeImageId"));
                 var id = await idContent.ReadAsStringAsync();
+                var themeImageId = int.Parse(id);
 
-                // TODO: スコア計算して返す
-                return new ScoreCheckResult() { Score = 0 };
+                using (var db = new Connect2016TZEntities())
+                {
+                    var targetTheme = db.ThemeImage.FirstOrDefault(x => x.Id == themeImageId);
+                    if (targetTheme == null)
+                    {
+                        // 無かったらNotFound
+                        throw new HttpResponseException(HttpStatusCode.NotFound);
+                    }
+
+                    // お題のイメージを取得
+                    var themeImage = BlobManager.DownloadThemeImage(themeImageId);
+
+                    // スコアレコード取得
+                    var target = db.Score.FirstOrDefault(x => x.ThemeImageId == themeImageId);
+                    if (target == null)
+                    {
+                        target = db.Score.Add(new Score() { ThemeImageId = themeImageId });
+                    }
+
+                    // スコア計算
+                    var calc = new ScoreCalculator();
+                    // TODO: 出来たらもどす
+                    //target.ScoreValue = calc.CalcApproximateScore(themeImage, buffer);
+                    // とりあえずランダム値
+                    var r = new Random();
+                    target.ScoreValue = r.Next(100);
+
+                    // 結果を返す
+                    return new ScoreCheckResult() { ThemeImageId = themeImageId, Score = target.ScoreValue };
+                }
             }
             catch (Exception ex)
             {
