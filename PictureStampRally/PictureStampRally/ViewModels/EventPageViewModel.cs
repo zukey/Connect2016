@@ -76,6 +76,16 @@ namespace PictureStampRally.ViewModels
         }
         #endregion
 
+        private int? _selectedScore;
+        public int? SelectedScore
+        {
+            get { return _selectedScore; }
+            set
+            {
+                SetProperty(ref _selectedScore, value);
+            }
+        }
+
         #region  トータルスコア
         private int? _totalScore;
 
