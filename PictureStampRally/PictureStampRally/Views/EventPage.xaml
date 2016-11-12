@@ -37,7 +37,7 @@
             <Button x:Name="button" Content="ここを探す！" Grid.Column="1" HorizontalAlignment="Left" Margin="497.4,224,0,0" VerticalAlignment="Top" Height="84" Width="166" FontSize="30" Click="button_Click"/>
             <ListView x:Name="listView" Grid.Column="1" HorizontalAlignment="Left" Height="220" Margin="117.4,88,0,0" VerticalAlignment="Top" Width="228" ItemsSource="{Binding SelectedHintProvidors}" />
             <TextBlock x:Name="textBlock7" Grid.Column="1" HorizontalAlignment="Left" Height="34" Margin="117.4,49,0,0" TextWrapping="Wrap" Text="情報提供店" VerticalAlignment="Top" Width="136" FontSize="24"/>
-            <TextBlock x:Name="textBlock8" Grid.Column="1" HorizontalAlignment="Left" Margin="527.4,160,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Height="48" Width="64" FontSize="36"/>
+            <TextBlock x:Name="textBlock8" Grid.Column="1" HorizontalAlignment="Left" Margin="527.4,160,0,0" TextWrapping="Wrap" Text="{Binding SelectedScore}" VerticalAlignment="Top" Height="48" Width="64" FontSize="36"/>
             <TextBlock x:Name="textBlock9" Grid.Column="1" HorizontalAlignment="Left" Margin="591.4,160,0,0" TextWrapping="Wrap" Text="点" VerticalAlignment="Top" FontSize="36" Height="48" Width="43"/>
             <TextBlock x:Name="textBlock10" Grid.Column="1" HorizontalAlignment="Left" Margin="653.4,10,0,0" TextWrapping="Wrap" Text="点" VerticalAlignment="Top" Height="34" FontSize="24"/>
             <TextBlock x:Name="textBlock11" Grid.Column="1" HorizontalAlignment="Left" Margin="653.4,49,0,0" TextWrapping="Wrap" Text="点" VerticalAlignment="Top" Height="34" FontSize="24"/>
