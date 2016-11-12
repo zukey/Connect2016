@@ -13,6 +13,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+using Windows.Media.Capture;
+using Windows.Storage;
+
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234238 を参照してください
 
 using PictureStampRally.ViewModels;
@@ -43,5 +46,16 @@ namespace PictureStampRally.Views
 
             await _viewModel.LoadThemeList(eventId.Value);
         }
+
+        private void buttonback_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage));
+        }
+
+        private async void button_Click(object sender, RoutedEventArgs e)
+        {
+            await CameraAppManager.CameraCaptureAndNavigateScore(this, 2);
+        }
+
     }
 }
