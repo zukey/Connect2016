@@ -42,7 +42,7 @@
             <TextBlock x:Name="textBlock10" Grid.Column="1" HorizontalAlignment="Left" Margin="653.4,10,0,0" TextWrapping="Wrap" Text="点" VerticalAlignment="Top" Height="34" FontSize="24"/>
             <TextBlock x:Name="textBlock11" Grid.Column="1" HorizontalAlignment="Left" Margin="653.4,49,0,0" TextWrapping="Wrap" Text="点" VerticalAlignment="Top" Height="34" FontSize="24"/>
         </Grid>
-        <Button x:Name="buttonback" Content="戻る" HorizontalAlignment="Left" Margin="20,15,0,0" VerticalAlignment="Top" Height="47" Width="87" Click="buttonback_Click"/>
+        <Button x:Name="buttonback" Content="戻る" HorizontalAlignment="Left" Margin="20,15,0,0" VerticalAlignment="Top" Height="47" Width="87" Click="buttonback_Click" FontSize="24"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="170,15,0,0" TextWrapping="Wrap" Text="アプリタイトル" VerticalAlignment="Top" Height="59" Width="700" FontSize="36" TextAlignment="Center"/>
     </Grid>
 </Page>
