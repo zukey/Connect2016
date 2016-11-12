@@ -39,6 +39,7 @@ namespace PictureStampRally.ViewModels
             {
                 SetProperty(ref _selectedTheme, value);
                 SelectedCapturedImage = _selectedTheme?.CapturedImage;
+                SelectedHintProvidors = _selectedTheme?.Hints;
             }
         }
         #endregion
@@ -107,6 +108,26 @@ namespace PictureStampRally.ViewModels
         }
         #endregion
 
+
+        private IEnumerable<string> _selectedHintProvidors;
+        public IEnumerable<string> SelectedHintProvidors
+        {
+            get { return _selectedHintProvidors; }
+            set
+            {
+                SetProperty(ref _selectedHintProvidors, value);
+            }
+        }
+
+        private string _selectedHintAddress;
+        public string SelectedHintAddress
+        {
+            get { return _selectedHintAddress; }
+            set
+            {
+                SetProperty(ref _selectedHintAddress, value);
+            }
+        }
 
         /// <summary>
         /// 指定されたイベントIDに関連する情報を取得してプロパティを更新します。
