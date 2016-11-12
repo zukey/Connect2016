@@ -47,7 +47,7 @@ namespace PictureStampRally.Views
 
         private async void buttoncamera_Click(object sender, RoutedEventArgs e)
         {
-            await CameraAppManager.CameraCaptureAndNavigateScore(this, 2);
+            await CameraAppManager.CameraCaptureAndNavigateScore(this, 2,3);
         }
     }
 }

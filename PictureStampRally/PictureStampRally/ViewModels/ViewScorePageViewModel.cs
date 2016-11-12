@@ -15,9 +15,9 @@ namespace PictureStampRally.ViewModels
     public class ViewScorePageViewModel : NotificationBase
     {
         /// <summary>
-        /// 画面遷移時に渡されたパラメータ
+        /// 画面遷移時に渡されたパラメータを取得します。
         /// </summary>
-        ViewScorePageParameter _param;
+        public ViewScorePageParameter Parameter { get; private set; }
 
         #region スコア
         private int? _score;
@@ -44,7 +44,7 @@ namespace PictureStampRally.ViewModels
         public async Task Initialize(ViewScorePageParameter param)
         {
             // パラメータ保存
-            _param = param;
+            Parameter = param;
 
             try
             {
@@ -75,13 +75,13 @@ namespace PictureStampRally.ViewModels
         public async Task Regist()
         {
             // 撮影したファイルを取得
-            var file = await StorageFile.GetFileFromPathAsync(_param.CaptureImageFilePath);
+            var file = await StorageFile.GetFileFromPathAsync(Parameter.CaptureImageFilePath);
 
             using (var api = new PictureStampRallyWebApi())
             using (var stream = await file.OpenStreamForReadAsync())
             {
                 // 登録処理
-                var result = await api.Score.RegistAsync(stream, _param.ThemeImageId);
+                var result = await api.Score.RegistAsync(stream, Parameter.ThemeImageId);
             }
         }
     }

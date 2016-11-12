@@ -55,7 +55,7 @@ namespace PictureStampRally.WebApi.Controllers
                     }
 
                     // お題のイメージを取得
-                    var themeImage = BlobManager.DownloadThemeImage(themeImageId);
+                    var themeImage = BlobManager.DownloadThemeImage(targetTheme.BlobName);
 
                     // スコアレコード取得
                     var target = db.Score.FirstOrDefault(x => x.ThemeImageId == themeImageId);
@@ -118,10 +118,7 @@ namespace PictureStampRally.WebApi.Controllers
                     }
 
                     // お題のイメージを取得
-                    var themeImage = BlobManager.DownloadThemeImage(themeImageId);
-
-                    // 撮影画像をBlobに保存
-                    var captureImageUrl = BlobManager.UploadCapturedImage(buffer, themeImageId);
+                    var themeImage = BlobManager.DownloadThemeImage(targetTheme.BlobName);
 
                     // スコアレコード取得
                     var target = db.Score.FirstOrDefault(x => x.ThemeImageId == themeImageId);
@@ -129,6 +126,9 @@ namespace PictureStampRally.WebApi.Controllers
                     {
                         target = db.Score.Add(new Score() { ThemeImageId = themeImageId });
                     }
+
+                    // 撮影画像をBlobに保存
+                    var uploadResult = BlobManager.UploadCapturedImage(buffer, themeImageId, target.BlobName);
 
                     // スコア計算
                     var calc = new ScoreCalculator();
@@ -139,7 +139,8 @@ namespace PictureStampRally.WebApi.Controllers
                     target.ScoreValue = r.Next(100);
 
                     // 撮影データのURLセット
-                    target.CaptureImageUrl = captureImageUrl;
+                    target.CaptureImageUrl = uploadResult.Url;
+                    target.BlobName = uploadResult.BlobName;
 
                     // DB登録
                     db.SaveChanges();

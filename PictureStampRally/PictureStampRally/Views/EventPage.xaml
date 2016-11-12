@@ -27,9 +27,9 @@
                 <ColumnDefinition Width="121*"/>
             </Grid.ColumnDefinitions>
 
-            <Image  Margin="10,72,9.6,10" Source="{Binding SelectedCapturedImage}" Stretch="UniformToFill"/>
+            <Image  Margin="10,72,9.6,10" Source="{Binding SelectedCapturedImage}"/>
             <TextBlock x:Name="textBlock1" Grid.Column="1" HorizontalAlignment="Left" Margin="36.4,10,0,0" TextWrapping="Wrap" Text="ヒント：" VerticalAlignment="Top" Height="34" Width="76" TextAlignment="Right" FontSize="24"/>
-            <TextBlock x:Name="textBlock2" Grid.Column="1" HorizontalAlignment="Left" Margin="117.4,10,0,0" TextWrapping="Wrap" Text="福島県郡山市" VerticalAlignment="Top" Height="34" Width="228" FontSize="24"/>
+            <TextBlock x:Name="textBlock2" Grid.Column="1" HorizontalAlignment="Left" Margin="117.4,10,0,0" TextWrapping="Wrap" Text="{Binding SelectedHintAddress}" VerticalAlignment="Top" Height="34" Width="228" FontSize="24"/>
             <TextBlock x:Name="textBlock3" Grid.Column="1" HorizontalAlignment="Left" Margin="478.4,10,0,0" TextWrapping="Wrap" Text="スコア合計：" VerticalAlignment="Top" Height="34" FontSize="24"/>
             <TextBlock x:Name="textBlock4" Grid.Column="1" HorizontalAlignment="Left" Margin="609.4,10,0,0" TextWrapping="Wrap" Text="{Binding TotalScore}" VerticalAlignment="Top" Height="34" FontSize="24" TextAlignment="Right" Width="39"/>
             <TextBlock x:Name="textBlock5" Grid.Column="1" HorizontalAlignment="Left" Margin="473.4,49,0,0" TextWrapping="Wrap" Text="クリアスコア：" VerticalAlignment="Top" FontSize="24"/>

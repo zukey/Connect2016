@@ -27,12 +27,17 @@ namespace PictureStampRally.Views
             return await captureUI.CaptureFileAsync(CameraCaptureUIMode.Photo);
         }
 
-        public static async Task CameraCaptureAndNavigateScore(Page from, int themeImageId)
+        public static async Task CameraCaptureAndNavigateScore(Page from, int eventId, int themeImageId)
         {
             var photo = await CameraCapture();
             if (photo == null) { return; }
 
-            var param = new ViewScorePageParameter() { ThemeImageId = themeImageId, CaptureImageFilePath = photo.Path };
+            var param = new ViewScorePageParameter()
+            {
+                EventId = eventId,
+                ThemeImageId = themeImageId,
+                CaptureImageFilePath = photo.Path
+            };
 
             // スコア表示画面に遷移
             from.Frame.Navigate(typeof(ViewScore), param.ToJsonSerializeString());

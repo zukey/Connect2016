@@ -205,6 +205,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BlobManager.cs" />
+    <Compile Include="Models\BlobUpdateResult.cs" />
     <Compile Include="Models\DB\Connect2016TZ.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

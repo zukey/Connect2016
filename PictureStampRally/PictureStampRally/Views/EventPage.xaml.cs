@@ -18,6 +18,7 @@ using Windows.Storage;
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234238 を参照してください
 
+using PictureStampRally.Models;
 using PictureStampRally.ViewModels;
 
 namespace PictureStampRally.Views
@@ -41,10 +42,18 @@ namespace PictureStampRally.Views
         {
             base.OnNavigatedTo(e);
 
-            var eventId = e.Parameter as int?;
-            if (!eventId.HasValue) { return; }
+            var paramString = e.Parameter as string;
+            if (paramString == null) { return; }
 
-            await _viewModel.LoadThemeList(eventId.Value);
+            var param = EventPageParameter.CreateFrom(paramString);
+
+            await _viewModel.LoadThemeList(param.EventId);
+
+            if (param.DefaultThemeImageId.HasValue)
+            {
+                var defaultSelected = _viewModel.ThemeList.FirstOrDefault(x => x.Id == param.DefaultThemeImageId.Value);
+                _viewModel.SelectedTheme = defaultSelected;
+            }
         }
 
         private void buttonback_Click(object sender, RoutedEventArgs e)
@@ -54,8 +63,11 @@ namespace PictureStampRally.Views
 
         private async void button_Click(object sender, RoutedEventArgs e)
         {
-            await CameraAppManager.CameraCaptureAndNavigateScore(this, 2);
-        }
+            if (_viewModel.SelectedTheme == null) { return; }
 
+            await CameraAppManager.CameraCaptureAndNavigateScore(this
+                , _viewModel.EventInfo.Id.GetValueOrDefault(0)
+                , _viewModel.SelectedTheme.Id.GetValueOrDefault(0));
+        }
     }
 }
