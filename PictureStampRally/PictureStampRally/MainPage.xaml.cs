@@ -39,7 +39,7 @@ namespace PictureStampRally
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(SamplePage));
+            Frame.Navigate(typeof(EventPage), 2);
         }
 
         private void button3_Click(object sender, RoutedEventArgs e)

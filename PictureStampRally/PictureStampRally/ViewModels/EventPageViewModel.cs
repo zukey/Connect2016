@@ -26,6 +26,7 @@ namespace PictureStampRally.ViewModels
             set
             {
                 SetProperty(ref _selectedTheme, value);
+                SelectedCapturedImageUrl = _selectedTheme?.CapturedImageUrl;
             }
         }
 
@@ -36,6 +37,16 @@ namespace PictureStampRally.ViewModels
             private set
             {
                 SetProperty(ref _eventInfo, value);
+            }
+        }
+
+        private string _selectedCapturedImageUrl;
+        public string SelectedCapturedImageUrl
+        {
+            get { return _selectedCapturedImageUrl; }
+            set
+            {
+                SetProperty(ref _selectedCapturedImageUrl, value);
             }
         }
 
