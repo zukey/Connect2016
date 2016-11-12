@@ -30,14 +30,25 @@ namespace PictureStampRally.Views
     /// </summary>
     public sealed partial class ViewScore : Page
     {
+        /// <summary>
+        /// ViewModel
+        /// </summary>
         ViewScorePageViewModel _viewModel;
 
+        /// <summary>
+        /// 新しいインスタンスを初期化します。
+        /// </summary>
         public ViewScore()
         {
             this.InitializeComponent();
             _viewModel = new ViewScorePageViewModel();
+            DataContext = _viewModel;
         }
 
+        /// <summary>
+        /// 画面遷移時
+        /// </summary>
+        /// <param name="e"></param>
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -48,11 +59,14 @@ namespace PictureStampRally.Views
             // パラメータ型に戻す
             var param = ViewScorePageParameter.CreateFrom(paramJsonString);
 
+            // 初期化
             await _viewModel.Initialize(param);
 
-            // TODO: キャプチャした画像ファイルを表示
+            // キャプチャした画像ファイルを表示
             var bi = new BitmapImage(new Uri(param.CaptureImageFilePath));
+            image.Source = bi;
         }
+
 
         private void buttonhome_Click(object sender, RoutedEventArgs e)
         {
@@ -61,7 +75,33 @@ namespace PictureStampRally.Views
 
         private async void buttonRePhotograph_Click(object sender, RoutedEventArgs e)
         {
-            await CameraAppManager.CameraCaptureAndNavigateScore(this, 2);
+            // カメラ撮影
+            await CameraAppManager.CameraCaptureAndNavigateScore(this
+                , _viewModel.Parameter.EventId
+                , _viewModel.Parameter.ThemeImageId);
+        }
+
+
+        private async void buttonRegist_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // 登録
+                await _viewModel.Regist();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("例外");
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
+
+            // イベントページに遷移
+            var para = new EventPageParameter()
+            {
+                EventId = _viewModel.Parameter.EventId,
+                DefaultThemeImageId = _viewModel.Parameter.ThemeImageId
+            };
+            Frame.Navigate(typeof(EventPage), para.ToJsonSerializeString());
         }
     }
 }

@@ -15,17 +15,17 @@ namespace PictureStampRally.WebApi.Models
         const string FOLDER_THEME = "images";
         const string FOLDER_CAPTURED = "captured";
 
-        public static string UploadThemeImage(byte[] data, int themeImageId)
+        public static BlobUpdateResult UploadThemeImage(byte[] data, int themeImageId, string originalBlobName = null)
         {
-            return Upload(data, FOLDER_THEME, themeImageId);
+            return Upload(data, FOLDER_THEME, themeImageId, originalBlobName);
         }
 
-        public static string UploadCapturedImage(byte[] data, int themeImageId)
+        public static BlobUpdateResult UploadCapturedImage(byte[] data, int themeImageId, string originalBlobName = null)
         {
-            return Upload(data, FOLDER_CAPTURED, themeImageId);
+            return Upload(data, FOLDER_CAPTURED, themeImageId, originalBlobName);
         }
 
-        private static string Upload(byte[] data, string folder, int themeImageId)
+        private static BlobUpdateResult Upload(byte[] data, string folder, int themeImageId, string originalBlobName)
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
                 CloudConfigurationManager.GetSetting("StorageConnectionString"));
@@ -34,20 +34,22 @@ namespace PictureStampRally.WebApi.Models
 
             var container = blobClient.GetContainerReference("connect2016");
 
+            // アップロード
             var blobName = CreateBlobName(folder, themeImageId);
             var blockBlob = container.GetBlockBlobReference(blobName);
-
             blockBlob.UploadFromByteArray(data, 0, data.Length);
 
-            return blockBlob.Uri.ToString();
+            // オリジナルの削除
+            if (!string.IsNullOrEmpty(originalBlobName))
+            {
+                var removeBlob = container.GetBlockBlobReference(originalBlobName);
+                removeBlob.DeleteIfExists(DeleteSnapshotsOption.IncludeSnapshots);
+            }
+
+            return new BlobUpdateResult() { Url = blockBlob.Uri.ToString(), BlobName = blobName };
         }
 
-        public static byte[] DownloadThemeImage(int themeImageId)
-        {
-            return Download(FOLDER_THEME, themeImageId);
-        }
-
-        private static byte[] Download(string folder, int themeImageId)
+        public static byte[] DownloadThemeImage(string blobName)
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
                 CloudConfigurationManager.GetSetting("StorageConnectionString"));
@@ -56,7 +58,6 @@ namespace PictureStampRally.WebApi.Models
 
             var container = blobClient.GetContainerReference("connect2016");
 
-            var blobName = CreateBlobName(folder, themeImageId);
             var blockBlob = container.GetBlockBlobReference(blobName);
 
             using (var ms = new MemoryStream())
@@ -66,9 +67,16 @@ namespace PictureStampRally.WebApi.Models
             }
         }
 
+        /// <summary>
+        /// BlobNameを生成します。
+        /// </summary>
+        /// <param name="folder">サブディレクトリ</param>
+        /// <param name="themeImageId">お題のID</param>
+        /// <returns></returns>
         private static string CreateBlobName(string folder, int themeImageId)
         {
-            return string.Format("{0}/{1}", folder, themeImageId);
+            var r = new Random();
+            return string.Format("{0}/{1}-{2}", folder, themeImageId, r.Next());
         }
     }
 }

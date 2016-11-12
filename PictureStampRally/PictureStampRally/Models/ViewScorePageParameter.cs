@@ -22,6 +22,7 @@ namespace PictureStampRally.Models
             }
         }
 
+        public int EventId { get; set; }
         public int ThemeImageId { get; set; }
         public string CaptureImageFilePath { get; set; }
 

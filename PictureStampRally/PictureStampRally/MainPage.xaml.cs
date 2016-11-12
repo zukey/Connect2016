@@ -17,6 +17,7 @@ using Windows.Media.Capture;
 using Windows.Storage;
 
 using PictureStampRally.Views;
+using PictureStampRally.Models;
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 を参照してください
 
@@ -39,7 +40,8 @@ namespace PictureStampRally
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(EventPage), 2);
+            var para = new EventPageParameter() { EventId = 2, };
+            Frame.Navigate(typeof(EventPage), para.ToJsonSerializeString());
         }
 
         private void button3_Click(object sender, RoutedEventArgs e)

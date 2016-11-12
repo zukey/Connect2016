@@ -1,17 +1,18 @@
 ﻿<Page
-    x:Class="PictureStampRally.Views.ViewScore"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:PictureStampRally.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    xmlns:ViewModels="using:PictureStampRally.ViewModels"
+    x:Class="PictureStampRally.Views.ViewScore"
+    mc:Ignorable="d" d:DataContext="{d:DesignInstance ViewModels:ViewScorePageViewModel, IsDesignTimeCreatable=True}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Button x:Name="buttonhome" Content="HOME" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="buttonhome_Click" Height="49" Width="92" FontSize="24"/>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="540,377,0,0" TextWrapping="Wrap" Text="点" VerticalAlignment="Top" FontSize="72"/>
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="404,374,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Height="99" Width="131" FontSize="72"/>
-        <Button x:Name="button1" Content="登録！！" HorizontalAlignment="Left" Margin="249,504,0,0" VerticalAlignment="Top" FontSize="36" Width="241"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="537,369,0,0" TextWrapping="Wrap" Text="点" VerticalAlignment="Top" FontSize="72"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="404,374,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Height="81" Width="131" FontSize="72"/>
+        <Button x:Name="buttonRegist" Content="登録！！" HorizontalAlignment="Left" Margin="249,504,0,0" VerticalAlignment="Top" FontSize="36" Width="241" Click="buttonRegist_Click" />
         <Button x:Name="buttonRePhotograph" Content="撮りなおす" HorizontalAlignment="Left" Margin="521,504,0,0" VerticalAlignment="Top" FontSize="36" Height="60" Width="242" Click="buttonRePhotograph_Click"/>
         <Image x:Name="image" HorizontalAlignment="Left" Height="276" Margin="208,88,0,0" VerticalAlignment="Top" Width="600"/>
 

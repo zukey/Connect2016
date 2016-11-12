@@ -36,6 +36,7 @@
           <Property Name="ThemeImageId" Type="int" Nullable="false" />
           <Property Name="ScoreValue" Type="int" Nullable="false" />
           <Property Name="CaptureImageUrl" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="BlobName" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="ThemeImage">
           <Key>
@@ -45,6 +46,7 @@
           <Property Name="EventId" Type="int" Nullable="false" />
           <Property Name="HintAddr" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ImageUrl" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="BlobName" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <Association Name="FK_HintChain_HintProvider">
           <End Role="HintProvider" Type="Self.HintProvider" Multiplicity="1">
@@ -173,6 +175,7 @@
           <Property Name="ScoreValue" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ThemeImage" Relationship="Connect2016TZModel.FK_Score_ThemeImage" FromRole="Score" ToRole="ThemeImage" />
           <Property Name="CaptureImageUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BlobName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ThemeImage">
           <Key>
@@ -185,6 +188,7 @@
           <NavigationProperty Name="Event" Relationship="Connect2016TZModel.FK_ThemeImage_Event" FromRole="ThemeImage" ToRole="Event" />
           <NavigationProperty Name="Score" Relationship="Connect2016TZModel.FK_Score_ThemeImage" FromRole="ThemeImage" ToRole="Score" />
           <NavigationProperty Name="HintProvider" Relationship="Connect2016TZModel.HintChain" FromRole="ThemeImage" ToRole="HintProvider" />
+          <Property Name="BlobName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_ThemeImage_Event">
           <End Type="Connect2016TZModel.Event" Role="Event" Multiplicity="1">
@@ -245,6 +249,7 @@
           <EntitySetMapping Name="Score">
             <EntityTypeMapping TypeName="Connect2016TZModel.Score">
               <MappingFragment StoreEntitySet="Score">
+                <ScalarProperty Name="BlobName" ColumnName="BlobName" />
                 <ScalarProperty Name="CaptureImageUrl" ColumnName="CaptureImageUrl" />
                 <ScalarProperty Name="ScoreValue" ColumnName="ScoreValue" />
                 <ScalarProperty Name="ThemeImageId" ColumnName="ThemeImageId" />
@@ -254,6 +259,7 @@
           <EntitySetMapping Name="ThemeImage">
             <EntityTypeMapping TypeName="Connect2016TZModel.ThemeImage">
               <MappingFragment StoreEntitySet="ThemeImage">
+                <ScalarProperty Name="BlobName" ColumnName="BlobName" />
                 <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
                 <ScalarProperty Name="HintAddr" ColumnName="HintAddr" />
                 <ScalarProperty Name="EventId" ColumnName="EventId" />

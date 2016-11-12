@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PictureStampRally.Models;
 using Windows.UI.Xaml.Media.Imaging;
+using Windows.Web.Http.Filters;
 
 namespace PictureStampRally.ViewModels
 {
@@ -38,9 +39,12 @@ namespace PictureStampRally.ViewModels
             set
             {
                 SetProperty(ref _selectedTheme, value);
+
+                // 選択されたテーマに関連するプロパティを更新
                 SelectedCapturedImage = _selectedTheme?.CapturedImage;
                 SelectedHintProvidors = _selectedTheme?.Hints;
                 SelectedScore = _selectedTheme?.Score;
+                SelectedHintAddress = _selectedTheme?.HintAddress;
             }
         }
         #endregion
@@ -65,19 +69,24 @@ namespace PictureStampRally.ViewModels
         private BitmapImage _selectedCapturedImage;
 
         /// <summary>
-        /// 選択中のお題に対する撮影データを取得／設定します。
+        /// 選択中のお題に対する撮影データを取得します。
         /// </summary>
         public BitmapImage SelectedCapturedImage
         {
             get { return _selectedCapturedImage; }
-            set
+            private set
             {
                 SetProperty(ref _selectedCapturedImage, value);
             }
         }
         #endregion
 
+        #region 選択中のお題に対する撮影データのスコア
         private int? _selectedScore;
+
+        /// <summary>
+        /// 選択中のお題に対する撮影データのスコアを取得します。
+        /// </summary>
         public int? SelectedScore
         {
             get { return _selectedScore; }
@@ -86,6 +95,40 @@ namespace PictureStampRally.ViewModels
                 SetProperty(ref _selectedScore, value);
             }
         }
+        #endregion
+
+        #region 選択中のお題のヒント提供店リスト
+        private IEnumerable<string> _selectedHintProvidors;
+
+        /// <summary>
+        /// 選択中のお題に対するヒント提供店のリストを取得します。
+        /// </summary>
+        public IEnumerable<string> SelectedHintProvidors
+        {
+            get { return _selectedHintProvidors; }
+            private set
+            {
+                SetProperty(ref _selectedHintProvidors, value);
+            }
+        }
+        #endregion
+
+        #region 選択中のお題に対するヒント（住所）
+        private string _selectedHintAddress;
+
+        /// <summary>
+        /// 選択中のお題に対するヒント（住所）を取得します。
+        /// </summary>
+        public string SelectedHintAddress
+        {
+            get { return _selectedHintAddress; }
+            set
+            {
+                SetProperty(ref _selectedHintAddress, value);
+            }
+        }
+        #endregion
+
 
         #region  トータルスコア
         private int? _totalScore;
@@ -120,26 +163,6 @@ namespace PictureStampRally.ViewModels
         #endregion
 
 
-        private IEnumerable<string> _selectedHintProvidors;
-        public IEnumerable<string> SelectedHintProvidors
-        {
-            get { return _selectedHintProvidors; }
-            set
-            {
-                SetProperty(ref _selectedHintProvidors, value);
-            }
-        }
-
-        private string _selectedHintAddress;
-        public string SelectedHintAddress
-        {
-            get { return _selectedHintAddress; }
-            set
-            {
-                SetProperty(ref _selectedHintAddress, value);
-            }
-        }
-
         /// <summary>
         /// 指定されたイベントIDに関連する情報を取得してプロパティを更新します。
         /// </summary>
@@ -156,10 +179,6 @@ namespace PictureStampRally.ViewModels
                 // お題リストを取得
                 var items = await api.ThemeInfo.GetAsync(eventId);
                 ThemeList = items.Select(x => new ThemeInfoViewItem(x)).ToArray();
-                if (ThemeList.Any())
-                {
-                    SelectedTheme = ThemeList.First();
-                }
             }
 
             // 目標スコア転記
