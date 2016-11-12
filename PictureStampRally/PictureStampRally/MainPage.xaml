@@ -21,6 +21,9 @@
         <Button x:Name="button3" Content="いわき" HorizontalAlignment="Left" Margin="346,434,0,0" VerticalAlignment="Top" Click="button3_Click" Height="91" Width="307" FontSize="48"/>
         <TextBlock x:Name="textBlock" Margin="133,10,0,0" TextWrapping="Wrap" Text="アプリタイトル" VerticalAlignment="Top" Width="732" Height="69" FontSize="48" HorizontalAlignment="Left" TextAlignment="Center"/>
         <TextBlock x:Name="textBlock_Copy" Margin="334,76,0,0" TextWrapping="Wrap" Text="地域を選択してください" VerticalAlignment="Top" Width="307" Height="39" FontSize="30" HorizontalAlignment="Left" TextAlignment="Center"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="269,562,0,0" TextWrapping="Wrap" Text="合計スコア：" VerticalAlignment="Top" FontSize="48"/>
+        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="525,562,0,0" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" FontSize="48" TextAlignment="Right"/>
+        <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Margin="641,562,0,0" TextWrapping="Wrap" Text="点" VerticalAlignment="Top" FontSize="48"/>
 
     </Grid>
 </Page>
