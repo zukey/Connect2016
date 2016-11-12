@@ -7,19 +7,24 @@
     xmlns:ViewModels="using:PictureStampRally.ViewModels"
     x:Class="PictureStampRally.Views.SamplePage"
     mc:Ignorable="d" d:DataContext="{d:DesignInstance ViewModels:SamplePageViewModel, IsDesignTimeCreatable=True}">
-    
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="31,549,0,0" TextWrapping="Wrap" Text="{Binding Val}" VerticalAlignment="Top"/>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="31,574,0,0" VerticalAlignment="Top" Click="button_Click"/>
-        <Button x:Name="buttonback" Content="戻る" HorizontalAlignment="Left" Margin="10,17,0,0" VerticalAlignment="Top" Click="buttonback_Click"/>
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="49" Margin="79,13,0,0" TextWrapping="Wrap" Text="アプリタイトル" VerticalAlignment="Top" Width="213" FontSize="36" TextAlignment="Center"/>
-        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="49,219,0,0" TextWrapping="Wrap" Text="ヒント：" VerticalAlignment="Top"/>
-        <Button x:Name="buttoncamera" Content="撮影！！" HorizontalAlignment="Left" Margin="212,459,0,0" VerticalAlignment="Top" Click="buttoncamera_Click"/>
-        <FlipView x:Name="flipView1" Margin="31,67,30,0" VerticalAlignment="Top" Height="138" HorizontalAlignment="Left">
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="958,582,0,0" TextWrapping="Wrap" Text="{Binding Val}" VerticalAlignment="Top"/>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="958,607,0,0" VerticalAlignment="Top" Click="button_Click"/>
+        <Button x:Name="buttonback" Content="戻る" HorizontalAlignment="Left" Margin="10,17,0,0" VerticalAlignment="Top" Click="buttonback_Click" Height="47" Width="87"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="49" Margin="212,17,0,0" TextWrapping="Wrap" Text="アプリタイトル" VerticalAlignment="Top" Width="599" FontSize="36" TextAlignment="Center"/>
+        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="237,350,0,0" TextWrapping="Wrap" Text="ヒント：" VerticalAlignment="Top" Height="48" Width="125" FontSize="36"/>
+        <Button x:Name="buttoncamera" Content="撮影！！" HorizontalAlignment="Left" Margin="739,492,0,0" VerticalAlignment="Top" Click="buttoncamera_Click" Height="81" Width="202" FontSize="48"/>
+        <FlipView x:Name="flipView1" Margin="101,91,0,0" VerticalAlignment="Top" Height="229" HorizontalAlignment="Left" Width="823" TabNavigation="Once">
             <Image Source="ms-appx:///Image/IMG_1.JPG"/>
             <Image Source="ms-appx:///Image/IMG_2.JPG"/>
             <Image Source="ms-appx:///Image/IMG_3.JPG"/>
         </FlipView>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="215" Margin="31,329,0,0" VerticalAlignment="Top" Width="143"/>
+        <Image x:Name="imagesub" HorizontalAlignment="Left" Height="210" Margin="101,420,0,0" VerticalAlignment="Top" Width="258" Source="ms-appx:///Image/IMG_2.JPG"/>
+        <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Height="48" Margin="348,350,0,0" TextWrapping="Wrap" Text="福島県郡山市大槻町" VerticalAlignment="Top" Width="466" FontSize="36"/>
+        <TextBlock x:Name="textBlock4" HorizontalAlignment="Left" Height="49" Margin="391,420,0,0" TextWrapping="Wrap" Text="★情報提供店★" VerticalAlignment="Top" Width="262" FontSize="36"/>
+        <TextBlock x:Name="textBlock5" HorizontalAlignment="Left" Height="36" Margin="391,496,0,0" TextWrapping="Wrap" Text="○○商店" VerticalAlignment="Top" Width="262" FontSize="24"/>
+        <TextBlock x:Name="textBlock6" HorizontalAlignment="Left" Height="36" Margin="391,537,0,0" TextWrapping="Wrap" Text="ホテル○○" VerticalAlignment="Top" Width="262" FontSize="24"/>
+        <TextBlock x:Name="textBlock7" HorizontalAlignment="Left" Height="36" Margin="391,578,0,0" TextWrapping="Wrap" Text="○○" VerticalAlignment="Top" Width="262" FontSize="24"/>
     </Grid>
 </Page>
