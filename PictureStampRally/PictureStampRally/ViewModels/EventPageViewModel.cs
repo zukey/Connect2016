@@ -40,6 +40,7 @@ namespace PictureStampRally.ViewModels
                 SetProperty(ref _selectedTheme, value);
                 SelectedCapturedImage = _selectedTheme?.CapturedImage;
                 SelectedHintProvidors = _selectedTheme?.Hints;
+                SelectedScore = _selectedTheme?.Score;
             }
         }
         #endregion
