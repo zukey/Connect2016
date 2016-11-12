@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Navigation;
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234238 を参照してください
 
+using PictureStampRally.ViewModels;
+
 namespace PictureStampRally.Views
 {
     /// <summary>
@@ -22,9 +24,24 @@ namespace PictureStampRally.Views
     /// </summary>
     public sealed partial class EventPage : Page
     {
+        EventPageViewModel _viewModel;
+
         public EventPage()
         {
             this.InitializeComponent();
+
+            _viewModel = new EventPageViewModel();
+            DataContext = _viewModel;
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            var eventId = e.Parameter as int?;
+            if (!eventId.HasValue) { return; }
+
+            await _viewModel.LoadThemeList(eventId.Value);
         }
     }
 }
