@@ -26,6 +26,8 @@ namespace PictureStampRally.WebApi.Models.ImageApproximate
             //Image img1 = ByteArrayToImage(image1);
             //Image img2 = ByteArrayToImage(image2);
 
+
+
             // イメージ保存
             //img1.Save("C:\\img1.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
             //img2.Save("C:\\img2.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
@@ -34,8 +36,9 @@ namespace PictureStampRally.WebApi.Models.ImageApproximate
              * 配列にpathを格納
              * args[0] → テンプレート画像パス
              * args[1] → 比較したい画像が格納されたフォルダ(複数画像格納OK)
+             * https://picturestamprallywebapi.azurewebsites.net/swagger/ui/index
              */
-            string[] args = { @"D:\Temp\img1\ikaduti.jpg", @"D:\Temp\img2" };
+            string[] args = { @"C:\Users\fcszawa\Documents\temp\16.jpg", @"C:\Users\fcszawa\Documents\temp2" };
 
             int i, sch = 0;
             float[] range_0 = { 0, 256 };
@@ -56,12 +59,16 @@ namespace PictureStampRally.WebApi.Models.ImageApproximate
             }
 
             // args[1]に格納されているファイルをすべて取得する
+            //TODO: ここいらなそう
             IEnumerable<string> tempFiles = Directory.EnumerateFiles(args[1], "*.jpg", SearchOption.TopDirectoryOnly);
             Dictionary<string, double> NCCPair = new Dictionary<string, double>();
 
             //(1)テンプレート画像を読み込む
             // TODO:ここで落ちることがある模様
-            src_img1 = IplImage.FromFile(args[0], LoadMode.AnyDepth | LoadMode.AnyColor);
+            //IplImage src_img11 = new IplImage();
+            //src_img11.CopyPixelData(image1);
+            //src_img1 = IplImage.FromFile(args[0], LoadMode.AnyDepth | LoadMode.AnyColor);
+            src_img1 = IplImage.FromFile(args[0], LoadMode.GrayScale);
 
             // (2)入力画像のチャンネル数分の画像領域を確保
             sch = src_img1.NChannels;
@@ -99,6 +106,9 @@ namespace PictureStampRally.WebApi.Models.ImageApproximate
 
 
             // TODO:テンプレートと撮影した写真の比較となるためここループにしなくてもよさげ
+
+            double score1 = 0;
+
             foreach (string file in tempFiles)
             {
                 try
@@ -107,7 +117,7 @@ namespace PictureStampRally.WebApi.Models.ImageApproximate
                     dist = 0.0;
 
                     // 比較対象の画像を読み込む
-                    src_img2 = IplImage.FromFile(file, LoadMode.AnyDepth | LoadMode.AnyColor);
+                    src_img2 = IplImage.FromFile(file, LoadMode.GrayScale);
 
                     // (2)入力画像のチャンネル数分の画像領域を確保
                     //sch = src_img1.NChannels;
@@ -141,7 +151,7 @@ namespace PictureStampRally.WebApi.Models.ImageApproximate
                     dist = Math.Sqrt(dist);
 
                     // distを点数風に計算しなおしてみた。
-                    double score1 = Math.Floor(100 - (dist * 100));
+                    score1 = Math.Floor(100 - (dist * 100));
 
                     // (6)求めた距離を文字として画像に描画
                     // dist=0.00に近いほど同じ画像となるっぽい。
@@ -162,7 +172,7 @@ namespace PictureStampRally.WebApi.Models.ImageApproximate
             Cv.ReleaseHist(hist1[2]);
             Cv.ReleaseHist(hist1[3]);
 
-            return 0;
+            return (int)score1;
         }
 
         // バイト配列をImageオブジェクトに変換
@@ -172,6 +182,16 @@ namespace PictureStampRally.WebApi.Models.ImageApproximate
             Image img = (Image)imgconv.ConvertFrom(b);
             return img;
         }
+
+        // Imageオブジェクトをバイト配列に変換
+        public static byte[] ImageToByteArray(Image img)
+        {
+            ImageConverter imgconv = new ImageConverter();
+            byte[] b = (byte[])imgconv.ConvertTo(img, typeof(byte[]));
+            return b;
+        }
+
+
 
     }
 }
