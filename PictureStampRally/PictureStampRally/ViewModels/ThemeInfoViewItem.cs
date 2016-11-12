@@ -8,8 +8,15 @@ using PictureStampRally.Models;
 
 namespace PictureStampRally.ViewModels
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ThemeInfoViewItem : ThemeInfo
     {
+        /// <summary>
+        /// 新しいインスタンスを初期化します。
+        /// </summary>
+        /// <param name="source">オリジナル</param>
         public ThemeInfoViewItem(ThemeInfo source)
         {
             Id = source.Id;
@@ -26,7 +33,14 @@ namespace PictureStampRally.ViewModels
             }
         }
 
+        /// <summary>
+        /// お題のイメージデータを取得します。
+        /// </summary>
         public BitmapImage ThemeImage { get; private set; }
+
+        /// <summary>
+        /// 撮影した写真のイメージデータを取得します。
+        /// </summary>
         public BitmapImage CapturedImage { get; private set; }
     }
 }
