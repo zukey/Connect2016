@@ -67,12 +67,26 @@ namespace PictureStampRally.Views
             image.Source = bi;
         }
 
-
+        /// <summary>
+        /// 戻るボタン押下
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonhome_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(MainPage));
+            var para = new EventPageParameter()
+            {
+                EventId = _viewModel.Parameter.EventId,
+                DefaultThemeImageId = _viewModel.Parameter.ThemeImageId
+            };
+            Frame.Navigate(typeof(EventPage), para.ToJsonSerializeString());
         }
 
+        /// <summary>
+        /// 取り直しボタン押下
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void buttonRePhotograph_Click(object sender, RoutedEventArgs e)
         {
             // カメラ撮影
@@ -81,7 +95,11 @@ namespace PictureStampRally.Views
                 , _viewModel.Parameter.ThemeImageId);
         }
 
-
+        /// <summary>
+        /// 登録ボタン押下
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void buttonRegist_Click(object sender, RoutedEventArgs e)
         {
             try

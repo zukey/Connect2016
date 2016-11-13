@@ -19,6 +19,22 @@ namespace PictureStampRally.ViewModels
         /// </summary>
         public ViewScorePageParameter Parameter { get; private set; }
 
+        #region 初期化完了フラグ
+        private bool _initialized;
+
+        /// <summary>
+        /// 初期化完了フラグを取得します。
+        /// </summary>
+        public bool Initialized
+        {
+            get { return _initialized; }
+            private set
+            {
+                SetProperty(ref _initialized, value);
+            }
+        }
+        #endregion
+
         #region スコア
         private int? _score;
 
@@ -60,6 +76,7 @@ namespace PictureStampRally.ViewModels
                     // スコア更新
                     Score = result.Score;
                 }
+                Initialized = true;
             }
             catch (Exception ex)
             {
