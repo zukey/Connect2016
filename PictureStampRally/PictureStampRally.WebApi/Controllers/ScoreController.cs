@@ -65,12 +65,19 @@ namespace PictureStampRally.WebApi.Controllers
                     }
 
                     // スコア計算
-                    var calc = new ScoreCalculator();
-                    // TODO: 出来たらもどす
-                    //target.ScoreValue = calc.CalcApproximateScore(themeImage, buffer);
-                    // とりあえずランダム値
-                    var r = new Random();
-                    target.ScoreValue = r.Next(100);
+                    try
+                    {
+                        var calc = new ScoreCalculator();
+                        target.ScoreValue = calc.CalcApproximateScore(themeImage, buffer);
+                    }
+                    catch (Exception scex)
+                    {
+                        _Logger.Warn(scex, "スコア演算例外");
+
+                        // 例外出た場合はとりあえずランダム値返す
+                        var r = new Random();
+                        target.ScoreValue = r.Next(100);
+                    }
 
                     // 結果を返す
                     return new ScoreCheckResult() { ThemeImageId = themeImageId, Score = target.ScoreValue };
@@ -131,12 +138,19 @@ namespace PictureStampRally.WebApi.Controllers
                     var uploadResult = BlobManager.UploadCapturedImage(buffer, themeImageId, target.BlobName);
 
                     // スコア計算
-                    var calc = new ScoreCalculator();
-                    // TODO: 出来たらもどす
-                    //target.ScoreValue = calc.CalcApproximateScore(themeImage, buffer);
-                    // とりあえずランダム値
-                    var r = new Random();
-                    target.ScoreValue = r.Next(100);
+                    try
+                    {
+                        var calc = new ScoreCalculator();
+                        target.ScoreValue = calc.CalcApproximateScore(themeImage, buffer);
+                    }
+                    catch (Exception scex)
+                    {
+                        _Logger.Warn(scex, "スコア演算例外");
+
+                        // とりあえずランダム値
+                        var r = new Random();
+                        target.ScoreValue = r.Next(100);
+                    }
 
                     // 撮影データのURLセット
                     target.CaptureImageUrl = uploadResult.Url;
