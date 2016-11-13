@@ -73,6 +73,6 @@
             </Grid>
         </Grid>
         <Button x:Name="buttonback" Content="戻る" HorizontalAlignment="Left" Margin="20,15,0,0" VerticalAlignment="Top" Height="47" Width="87" Click="buttonback_Click" FontSize="24"/>
-        <TextBlock x:Name="textBlock" Margin="0,15,0,0" TextWrapping="Wrap" Text="アプリタイトル" VerticalAlignment="Top" Height="59" FontSize="36" TextAlignment="Center" HorizontalAlignment="Center" />
+        <TextBlock x:Name="textBlock" Margin="0,15,0,0" TextWrapping="Wrap" Text="テクスポ　～ Take a good Spot～" VerticalAlignment="Top" Height="59" FontSize="36" TextAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" />
     </Grid>
 </Page>

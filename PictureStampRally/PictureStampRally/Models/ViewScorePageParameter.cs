@@ -8,8 +8,16 @@ using System.Threading.Tasks;
 
 namespace PictureStampRally.Models
 {
+    /// <summary>
+    /// スコア表示ページのパラメータ
+    /// </summary>
     public class ViewScorePageParameter
     {
+        /// <summary>
+        /// シリアライズされた文字列からインスタンスを生成します。
+        /// </summary>
+        /// <param name="jsonSerializeString">シリアライズされた文字列</param>
+        /// <returns></returns>
         public static ViewScorePageParameter CreateFrom(string jsonSerializeString)
         {
             var serializer = new DataContractJsonSerializer(typeof(ViewScorePageParameter));
@@ -22,10 +30,25 @@ namespace PictureStampRally.Models
             }
         }
 
+        /// <summary>
+        /// イベントID
+        /// </summary>
         public int EventId { get; set; }
+
+        /// <summary>
+        /// お題のID
+        /// </summary>
         public int ThemeImageId { get; set; }
+
+        /// <summary>
+        /// 撮影データのファイルパス
+        /// </summary>
         public string CaptureImageFilePath { get; set; }
 
+        /// <summary>
+        /// 現在のインスタンスをJson形式でシリアライズします。
+        /// </summary>
+        /// <returns></returns>
         public string ToJsonSerializeString()
         {
             var serializer = new DataContractJsonSerializer(typeof(ViewScorePageParameter));

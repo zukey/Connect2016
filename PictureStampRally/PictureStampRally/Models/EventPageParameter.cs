@@ -9,6 +9,9 @@ using System.IO;
 
 namespace PictureStampRally.Models
 {
+    /// <summary>
+    /// イベントページのパラメータ
+    /// </summary>
     public class EventPageParameter
     {
         /// <summary>

@@ -9,6 +9,9 @@ using Windows.Web.Http.Filters;
 
 namespace PictureStampRally.ViewModels
 {
+    /// <summary>
+    /// イベントページのViewModel
+    /// </summary>
     public class EventPageViewModel : NotificationBase
     {
         #region お題データリスト

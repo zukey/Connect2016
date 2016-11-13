@@ -8,6 +8,9 @@ using PictureStampRally.Models;
 
 namespace PictureStampRally.ViewModels
 {
+    /// <summary>
+    /// サンプル
+    /// </summary>
     public class SamplePageViewModel : NotificationBase
     {
         int _val;

@@ -28,8 +28,14 @@ namespace PictureStampRally.Views
     /// </summary>
     public sealed partial class EventPage : Page
     {
+        /// <summary>
+        /// ViewModel
+        /// </summary>
         EventPageViewModel _viewModel;
 
+        /// <summary>
+        /// 新しいインスタンスを初期化します。
+        /// </summary>
         public EventPage()
         {
             this.InitializeComponent();
@@ -38,17 +44,24 @@ namespace PictureStampRally.Views
             DataContext = _viewModel;
         }
 
+        /// <summary>
+        /// 画面遷移時
+        /// </summary>
+        /// <param name="e"></param>
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
+            // 呼び出しパラメータを復元
             var paramString = e.Parameter as string;
             if (paramString == null) { return; }
 
             var param = EventPageParameter.CreateFrom(paramString);
 
+            // 表示データ取得
             await _viewModel.LoadThemeList(param.EventId);
 
+            // デフォルトのお題IDが指定されている場合はそいつを表示
             if (param.DefaultThemeImageId.HasValue)
             {
                 var defaultSelected = _viewModel.ThemeList.FirstOrDefault(x => x.Id == param.DefaultThemeImageId.Value);
@@ -56,11 +69,21 @@ namespace PictureStampRally.Views
             }
         }
 
+        /// <summary>
+        /// 戻る押下
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonback_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(MainPage));
         }
 
+        /// <summary>
+        /// 撮影押下
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void button_Click(object sender, RoutedEventArgs e)
         {
             if (_viewModel.SelectedTheme == null) { return; }

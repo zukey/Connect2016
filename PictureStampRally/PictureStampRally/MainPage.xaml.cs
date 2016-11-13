@@ -24,27 +24,45 @@ using PictureStampRally.Models;
 namespace PictureStampRally
 {
     /// <summary>
-    /// それ自体で使用できる空白ページまたはフレーム内に移動できる空白ページ。
+    /// メインページ
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        /// <summary>
+        /// 新しいインスタンスを初期化します。
+        /// </summary>
         public MainPage()
         {
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// イベント1押下
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             var para = new EventPageParameter() { EventId = 1, };
             Frame.Navigate(typeof(EventPage), para.ToJsonSerializeString());
         }
 
+        /// <summary>
+        /// イベント2押下
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, RoutedEventArgs e)
         {
             var para = new EventPageParameter() { EventId = 2, };
             Frame.Navigate(typeof(EventPage), para.ToJsonSerializeString());
         }
 
+        /// <summary>
+        /// イベント3押下
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button3_Click(object sender, RoutedEventArgs e)
         {
             var para = new EventPageParameter() { EventId = 1, };

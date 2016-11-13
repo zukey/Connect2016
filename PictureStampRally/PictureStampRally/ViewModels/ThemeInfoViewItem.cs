@@ -9,7 +9,7 @@ using PictureStampRally.Models;
 namespace PictureStampRally.ViewModels
 {
     /// <summary>
-    /// 
+    /// お題の情報
     /// </summary>
     public class ThemeInfoViewItem : ThemeInfo
     {

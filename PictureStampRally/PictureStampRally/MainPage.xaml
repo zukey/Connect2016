@@ -13,7 +13,7 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="アプリタイトル" Height="69" FontSize="48" HorizontalAlignment="Center" TextAlignment="Center"/>
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="テクスポ　～ Take a good Spot～" Height="69" FontSize="48" HorizontalAlignment="Center" TextAlignment="Center" FontWeight="Bold"/>
             <TextBlock x:Name="textBlock_Copy" TextWrapping="Wrap" Text="地域を選択してください" Height="39" FontSize="30" HorizontalAlignment="Center" TextAlignment="Center"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="1" HorizontalAlignment="Center" Margin="0,20">

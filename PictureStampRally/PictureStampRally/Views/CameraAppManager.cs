@@ -14,8 +14,15 @@ using PictureStampRally.Models;
 
 namespace PictureStampRally.Views
 {
+    /// <summary>
+    /// カメラアプリ管理
+    /// </summary>
     static class CameraAppManager
     {
+        /// <summary>
+        /// カメラアプリを起動して写真を撮影します。
+        /// </summary>
+        /// <returns>撮影した写真のファイル</returns>
         public static async Task<StorageFile> CameraCapture()
         {
             CameraCaptureUI captureUI = new CameraCaptureUI();
@@ -27,6 +34,13 @@ namespace PictureStampRally.Views
             return await captureUI.CaptureFileAsync(CameraCaptureUIMode.Photo);
         }
 
+        /// <summary>
+        /// カメラアプリを起動して写真を撮影し、スコアページに遷移します。
+        /// </summary>
+        /// <param name="from">呼び出し元のページ</param>
+        /// <param name="eventId">イベントID</param>
+        /// <param name="themeImageId">お題のID</param>
+        /// <returns></returns>
         public static async Task CameraCaptureAndNavigateScore(Page from, int eventId, int themeImageId)
         {
             var photo = await CameraCapture();
