@@ -35,7 +35,8 @@ namespace PictureStampRally
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(EventPage), 2);
+            var para = new EventPageParameter() { EventId = 1, };
+            Frame.Navigate(typeof(EventPage), para.ToJsonSerializeString());
         }
 
         private void button2_Click(object sender, RoutedEventArgs e)
