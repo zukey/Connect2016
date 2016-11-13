@@ -28,19 +28,19 @@
             </Grid.ColumnDefinitions>
 
             <Image  Margin="10,72,9.6,10" Source="{Binding SelectedCapturedImage}"/>
-            <TextBlock x:Name="textBlock1" Grid.Column="1" Margin="36.4,10,614,308" TextWrapping="Wrap" Text="ヒント：" TextAlignment="Right" FontSize="24"/>
+            <TextBlock x:Name="textBlock1" Grid.Column="1" Margin="36.4,10,0,0" TextWrapping="Wrap" Text="ヒント：" TextAlignment="Right" FontSize="24" HorizontalAlignment="Left" Width="76" Height="34" VerticalAlignment="Top"/>
             <TextBlock x:Name="textBlock2" Grid.Column="1" Margin="117.4,10,381,308" TextWrapping="Wrap" Text="{Binding SelectedHintAddress}" FontSize="24"/>
             <TextBlock x:Name="textBlock3" Grid.Column="1" Margin="471.4,10,0,0" TextWrapping="Wrap" Text="スコア合計：" FontSize="24" HorizontalAlignment="Left" Width="133" Height="34" VerticalAlignment="Top"/>
             <TextBlock x:Name="textBlock4" Grid.Column="1" Margin="609.4,10,0,0" TextWrapping="Wrap" Text="{Binding TotalScore}" FontSize="24" TextAlignment="Right" HorizontalAlignment="Left" Width="39" Height="34" VerticalAlignment="Top"/>
             <TextBlock x:Name="textBlock5" Grid.Column="1" Margin="465.4,49,0,0" TextWrapping="Wrap" Text="クリアスコア：" FontSize="24" HorizontalAlignment="Left" Width="139" Height="32" VerticalAlignment="Top"/>
             <TextBlock x:Name="textBlock6" Grid.Column="1" Margin="609.4,49,0,0" TextWrapping="Wrap" Text="{Binding BorderScore}" FontSize="24" HorizontalAlignment="Left" Width="39" Height="32" VerticalAlignment="Top"/>
             <Button x:Name="button" Content="ここを探す！" Grid.Column="1" HorizontalAlignment="Left" Margin="497.4,224,0,0" VerticalAlignment="Top" Height="84" FontSize="30" Click="button_Click" Width="166"/>
-            <ListView x:Name="listView" Grid.Column="1" Height="220" Margin="117.4,88,381,0" VerticalAlignment="Top" ItemsSource="{Binding SelectedHintProvidors}" />
-            <TextBlock x:Name="textBlock7" Grid.Column="1" Margin="117.4,49,473,269" TextWrapping="Wrap" Text="情報提供店" FontSize="24"/>
-            <TextBlock x:Name="textBlock8" Grid.Column="1" Margin="527.4,160,135,144" TextWrapping="Wrap" Text="{Binding SelectedScore}" FontSize="36"/>
+            <ListView x:Name="listView" Grid.Column="1" Margin="117.4,88,0,0" ItemsSource="{Binding SelectedHintProvidors}" HorizontalAlignment="Left" Width="228" Height="220" VerticalAlignment="Top" />
+            <TextBlock x:Name="textBlock7" Grid.Column="1" Margin="117.4,49,0,0" TextWrapping="Wrap" Text="情報提供店" FontSize="24" HorizontalAlignment="Left" Width="136" Height="34" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock8" Grid.Column="1" Margin="527.4,160,0,0" TextWrapping="Wrap" Text="{Binding SelectedScore}" FontSize="36" HorizontalAlignment="Left" Width="64" Height="48" VerticalAlignment="Top"/>
             <TextBlock x:Name="textBlock9" Grid.Column="1" Margin="591.4,160,0,0" TextWrapping="Wrap" Text="点" FontSize="36" HorizontalAlignment="Left" Width="43" Height="48" VerticalAlignment="Top"/>
-            <TextBlock x:Name="textBlock10" Grid.Column="1" Margin="653.4,10,0,0" TextWrapping="Wrap" Text="点" FontSize="24" HorizontalAlignment="Left" Width="24" Height="34" VerticalAlignment="Top"/>
-            <TextBlock x:Name="textBlock11" Grid.Column="1" Margin="653.4,49,0,0" TextWrapping="Wrap" Text="点" FontSize="24" HorizontalAlignment="Left" Width="24" Height="34" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock10" Grid.Column="1" Margin="653.4,10,0,0" TextWrapping="Wrap" Text="点" FontSize="24" HorizontalAlignment="Left" Height="34" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock11" Grid.Column="1" Margin="653.4,49,0,0" TextWrapping="Wrap" Text="点" FontSize="24" HorizontalAlignment="Left" Height="34" VerticalAlignment="Top" Width="24"/>
         </Grid>
         <Button x:Name="buttonback" Content="戻る" HorizontalAlignment="Left" Margin="20,15,0,0" VerticalAlignment="Top" Height="47" Width="87" Click="buttonback_Click" FontSize="24"/>
         <TextBlock x:Name="textBlock" Margin="170,15,0,0" TextWrapping="Wrap" Text="アプリタイトル" VerticalAlignment="Top" Height="59" FontSize="36" TextAlignment="Center" HorizontalAlignment="Left" Width="700"/>
