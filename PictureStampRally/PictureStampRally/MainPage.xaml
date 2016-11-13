@@ -8,19 +8,18 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1024*"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="640"/>
-            <RowDefinition Height="0"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="button1" Content="郡山" HorizontalAlignment="Left" Margin="349,158,0,0" VerticalAlignment="Top" Click="button1_Click" Width="307" Height="91" FontSize="48"/>
-        <Button x:Name="button2" Content="会津" HorizontalAlignment="Left" Margin="346,296,0,0" VerticalAlignment="Top" Click="button2_Click" Height="91" Width="307" FontSize="48"/>
-        <Button x:Name="button3" Content="いわき" HorizontalAlignment="Left" Margin="346,434,0,0" VerticalAlignment="Top" Click="button3_Click" Height="91" Width="307" FontSize="48"/>
-        <TextBlock x:Name="textBlock" Margin="133,10,0,0" TextWrapping="Wrap" Text="アプリタイトル" VerticalAlignment="Top" Width="732" Height="69" FontSize="48" HorizontalAlignment="Left" TextAlignment="Center"/>
-        <TextBlock x:Name="textBlock_Copy" Margin="334,76,0,0" TextWrapping="Wrap" Text="地域を選択してください" VerticalAlignment="Top" Width="307" Height="39" FontSize="30" HorizontalAlignment="Left" TextAlignment="Center"/>
-
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="アプリタイトル" Height="69" FontSize="48" HorizontalAlignment="Center" TextAlignment="Center"/>
+            <TextBlock x:Name="textBlock_Copy" TextWrapping="Wrap" Text="地域を選択してください" Height="39" FontSize="30" HorizontalAlignment="Center" TextAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="1" HorizontalAlignment="Center" Margin="0,20">
+            <Button x:Name="button1" Content="郡山" HorizontalAlignment="Left" Click="button1_Click" Width="400" Height="91" FontSize="48" Margin="0,20"/>
+            <Button x:Name="button2" Content="会津" HorizontalAlignment="Left" Click="button2_Click" Height="91" Width="400" FontSize="48" Margin="0,20"/>
+            <Button x:Name="button3" Content="福島・茨城・栃木" HorizontalAlignment="Left" Click="button3_Click" Height="91" Width="400" FontSize="48" Margin="0,20"/>
+        </StackPanel>
     </Grid>
 </Page>

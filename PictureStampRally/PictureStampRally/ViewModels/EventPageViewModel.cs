@@ -43,7 +43,7 @@ namespace PictureStampRally.ViewModels
                 // 選択されたテーマに関連するプロパティを更新
                 SelectedCapturedImage = _selectedTheme?.CapturedImage;
                 SelectedHintProvidors = _selectedTheme?.Hints;
-                SelectedScore = _selectedTheme?.Score;
+                SelectedScore = _selectedTheme?.Score == null ? "-" : _selectedTheme.Score.ToString();
                 SelectedHintAddress = _selectedTheme?.HintAddress;
             }
         }
@@ -82,12 +82,12 @@ namespace PictureStampRally.ViewModels
         #endregion
 
         #region 選択中のお題に対する撮影データのスコア
-        private int? _selectedScore;
+        private string _selectedScore;
 
         /// <summary>
         /// 選択中のお題に対する撮影データのスコアを取得します。
         /// </summary>
-        public int? SelectedScore
+        public string SelectedScore
         {
             get { return _selectedScore; }
             set
