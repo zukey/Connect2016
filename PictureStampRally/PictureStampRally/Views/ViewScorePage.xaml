@@ -9,12 +9,25 @@
     mc:Ignorable="d" d:DataContext="{d:DesignInstance ViewModels:ViewScorePageViewModel, IsDesignTimeCreatable=True}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button x:Name="buttonhome" Content="戻る" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="buttonhome_Click" Height="49" Width="92" FontSize="24"/>
-        <TextBlock x:Name="textBlock" Margin="537,369,0,0" TextWrapping="Wrap" Text="点" FontSize="72" HorizontalAlignment="Left" Width="72" Height="96" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock1" Margin="404,374,0,0" TextWrapping="Wrap" Text="{Binding Score, Mode=OneWay}" FontSize="72" HorizontalAlignment="Left" Width="131" Height="81" VerticalAlignment="Top"/>
-        <Button x:Name="buttonRegist" Content="登録！！" HorizontalAlignment="Left" Margin="249,504,0,0" VerticalAlignment="Top" FontSize="36" Width="241" Click="buttonRegist_Click" IsEnabled="{Binding Initialized, Mode=OneWay}" />
-        <Button x:Name="buttonRePhotograph" Content="撮りなおす" HorizontalAlignment="Left" Margin="521,504,0,0" VerticalAlignment="Top" FontSize="36" Height="60" Width="242" Click="buttonRePhotograph_Click"/>
-        <Image x:Name="image" Margin="208,88,216,276"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="buttonhome" Content="戻る" HorizontalAlignment="Left" Margin="10,10,0,10" VerticalAlignment="Top" Click="buttonhome_Click" Height="49" Width="92" FontSize="24"/>
+        <Image x:Name="image" Grid.Row="1" Margin="0,0,0,10" />
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="{Binding Score, Mode=OneWay}" FontSize="72" HorizontalAlignment="Left" Width="131" Height="81" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="点" FontSize="72" HorizontalAlignment="Left" Width="72" Height="96" VerticalAlignment="Top"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
+            <Button x:Name="buttonRegist" Grid.Row="3" Content="登録！！" FontSize="36" Width="240" Click="buttonRegist_Click" IsEnabled="{Binding Initialized, Mode=OneWay}" />
+            <Button x:Name="buttonRePhotograph" Grid.Row="3" Content="撮りなおす" Margin="50,0" FontSize="36" Height="60" Width="240" Click="buttonRePhotograph_Click"/>
+        </StackPanel>
 
+        <ProgressRing Grid.RowSpan="5" HorizontalAlignment="Center" VerticalAlignment="Center" IsActive="{Binding Awaiting, Mode=OneWay}" Width="80" Height="80"/>
+        <TextBlock Grid.Row="6" Text="{Binding StateMessage, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,10"/>
     </Grid>
 </Page>

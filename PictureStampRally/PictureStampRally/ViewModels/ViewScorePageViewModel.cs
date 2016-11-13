@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 using PictureStampRally.Models;
 using System.IO;
 using Windows.Storage;
@@ -51,6 +52,37 @@ namespace PictureStampRally.ViewModels
         }
         #endregion
 
+        #region 非同期待ち中フラグ
+        private bool _awaiting;
+
+        /// <summary>
+        /// 非同期待ち中フラグを取得します。
+        /// </summary>
+        public bool Awaiting
+        {
+            get { return _awaiting; }
+            private set
+            {
+                SetProperty(ref _awaiting, value);
+            }
+        }
+        #endregion
+
+        #region 状態メッセージ
+        private string _stateMessage;
+
+        /// <summary>
+        /// 状態メッセージを取得します。
+        /// </summary>
+        public string StateMessage
+        {
+            get { return _stateMessage; }
+            private set
+            {
+                SetProperty(ref _stateMessage, value);
+            }
+        }
+        #endregion
 
         /// <summary>
         /// 初期化
@@ -61,6 +93,9 @@ namespace PictureStampRally.ViewModels
         {
             // パラメータ保存
             Parameter = param;
+
+            // 計算中
+            SetAwaiting("スコア計算中...");
 
             try
             {
@@ -80,8 +115,12 @@ namespace PictureStampRally.ViewModels
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("ScoreCheck例外");
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                Debug.WriteLine("ScoreCheck例外");
+                Debug.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                ClearAwaiting();
             }
         }
 
@@ -91,15 +130,51 @@ namespace PictureStampRally.ViewModels
         /// <returns></returns>
         public async Task Regist()
         {
-            // 撮影したファイルを取得
-            var file = await StorageFile.GetFileFromPathAsync(Parameter.CaptureImageFilePath);
+            // 登録中
+            SetAwaiting("スコア登録中...");
 
-            using (var api = new PictureStampRallyWebApi())
-            using (var stream = await file.OpenStreamForReadAsync())
+            try
             {
-                // 登録処理
-                var result = await api.Score.RegistAsync(stream, Parameter.ThemeImageId);
+                // 撮影したファイルを取得
+                var file = await StorageFile.GetFileFromPathAsync(Parameter.CaptureImageFilePath);
+
+                using (var api = new PictureStampRallyWebApi())
+                using (var stream = await file.OpenStreamForReadAsync())
+                {
+                    // 登録処理
+                    var result = await api.Score.RegistAsync(stream, Parameter.ThemeImageId);
+                }
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine("登録例外");
+                Debug.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                ClearAwaiting();
             }
         }
+
+        #region プライベートメソッド
+        /// <summary>
+        /// 非同期待ち中にセット
+        /// </summary>
+        /// <param name="message"></param>
+        private void SetAwaiting(string message)
+        {
+            Awaiting = true;
+            StateMessage = message;
+        }
+
+        /// <summary>
+        /// 非同期待ち中解除
+        /// </summary>
+        private void ClearAwaiting()
+        {
+            Awaiting = false;
+            StateMessage = "";
+        }
+        #endregion
     }
 }
